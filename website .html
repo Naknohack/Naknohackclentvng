@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naknohack Profile</title>
+<meta name="description" content="Naknohack Community - Discord Bots, Roblox Scripts, Downloads">
+<meta name="theme-color" content="#5865f2">
+
+<meta property="og:title" content="Naknohack">
+<meta property="og:description" content="Discord Community • Gaming • Script">
+<meta property="og:type" content="website">
+
+<link rel="icon"
+href="https://cdn.discordapp.com/attachments/1514402026501705820/1515955892384956536/file_00000000eb5471f5913482409df21d00.png">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f1117;
+    color:white;
+    padding:20px;
+    animation:fadePage .8s ease;
+}
+
+@keyframes fadePage{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.card{
+    background:#181b24;
+    border-radius:25px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    margin-bottom:30px;
+}
+
+.banner{
+    height:320px;
+    background:url("https://cdn.discordapp.com/attachments/1514402026501705820/1515955916355145728/file_0000000057ec720ca1c54ca649e53d8f.png?ex=6a3ac6b7&is=6a397537&hm=bdd9bd7d40ccc3a2b969ba91412acd91a83c135dc2b31daa414c28637fc8786d&") center/cover;
+    position:relative;
+}
+
+.avatar{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    border:6px solid #181b24;
+    position:absolute;
+    left:30px;
+    bottom:-70px;
+    object-fit:cover;
+
+    transition:.4s ease;
+    cursor:pointer;
+    animation:avatarFloat 4s ease-in-out infinite;
+}
+
+.avatar:hover{
+    transform:scale(1.08) rotate(5deg);
+    box-shadow:
+        0 0 20px rgba(88,101,242,.5),
+        0 0 40px rgba(88,101,242,.25);
+}
+
+@keyframes avatarFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.profile{
+    padding:90px 30px 30px;
+}
+
+.profile h1{
+    font-size:42px;
+}
+
+.profile p{
+    color:#aaa;
+    margin-top:10px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:14px 24px;
+    background:#5865f2;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+}
+
+.section-title{
+    font-size:28px;
+    margin:25px 0;
+}
+
+.bot-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.downloads-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.bot-card{
+    background:#181b24;
+    padding:20px;
+    border-radius:20px;
+}
+
+.bot-card img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    margin-bottom:15px;
+}
+
+.bot-card h3{
+    margin-bottom:10px;
+}
+
+.invite-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 22px;
+    background:#5865f2;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+}
+
+.download-card{
+    position:relative;
+    background:rgba(24,27,36,.85);
+    backdrop-filter:blur(10px);
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid rgba(88,101,242,.25);
+    transition:.35s ease;
+}
+
+.download-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:1px;
+    border-radius:24px;
+    background:linear-gradient(
+        135deg,
+        #00e5ff,
+        #5865f2,
+        #ff0080
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    
+    /* THÊM DÒNG NÀY VÀO ÂY */
+    pointer-events: none; 
+}
+
+.download-card:hover{
+    transform:translateY(-6px);
+    box-shadow:
+        0 0 25px rgba(0,229,255,.25),
+        0 0 40px rgba(255,0,128,.15);
+}
+.download-card::after{
+    content:"";
+    position:absolute;
+    top:-100%;
+    left:-100%;
+    width:200%;
+    height:200%;
+    background:linear-gradient(
+        45deg,
+        transparent,
+        rgba(0,229,255,.08),
+        transparent
+    );
+    animation:scan 5s linear infinite;
+    
+    /* THÊM DÒNG NÀY VÀO ÂY */
+    pointer-events: none; 
+}
+
+@keyframes scan{
+    0%{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+    100%{
+        transform:translate(50%,50%) rotate(360deg);
+    }
+}
+
+.download-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    display:block;
+}
+
+
+.download-info{
+    padding:20px;
+}
+
+.download-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 22px;
+    background:#5865f2;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+}
+.download-banner{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+}
+
+.download-logo{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #181b24;
+    margin-top:-60px;
+    margin-bottom:10px;
+}
+
+.download-desc{
+    color:#aaa;
+    font-size:14px;
+    margin-top:5px;
+}
+
+.download-card{
+    position:relative;
+    background:#181b24;
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid rgba(88,101,242,.25);
+    transition:.3s;
+}
+
+.download-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 25px rgba(88,101,242,.35);
+}
+
+
+.downloads-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.download-card{
+    background:#181b24;
+    padding:20px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.05);
+    transition:.25s;
+}
+
+.download-card:hover{
+    transform:translateY(-4px);
+}
+
+.download-card img{
+    width:90px;
+    height:90px;
+    border-radius:20px;
+    object-fit:cover;
+    margin-bottom:15px;
+}
+
+.download-card h3{
+    margin-bottom:8px;
+}
+
+.download-desc{
+    color:#aaa;
+    font-size:14px;
+}
+
+.download-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 22px;
+    background:#5865f2;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+
+    background:
+    radial-gradient(circle at 20% 20%,rgba(88,101,242,.12),transparent 25%),
+    radial-gradient(circle at 80% 30%,rgba(0,229,255,.12),transparent 25%),
+    radial-gradient(circle at 50% 90%,rgba(255,0,128,.10),transparent 25%);
+
+    animation:bgMove 15s linear infinite alternate;
+}
+
+@keyframes bgMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-40px);
+    }
+}
+@keyframes zoomBanner{
+    from{
+        background-size:100%;
+    }
+    to{
+        background-size:110%;
+    }
+}
+.download-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ==================== PROFILE ==================== -->
+
+    <div class="card">
+
+        <div class="banner">
+
+            <!-- THAY AVATAR Táº I ÄÃ‚Y -->
+            <img class="avatar"
+            src="https://cdn.discordapp.com/attachments/1514402026501705820/1515955892384956536/file_00000000eb5471f5913482409df21d00.png?ex=6a3ac6b1&is=6a397531&hm=218b0a0a4b8e5f5e77e7f0b0d029f0f2cb1e7b5d3c0c3fab53a904f52135d28b&">
+
+        </div>
+
+        <div class="profile">
+
+            <h1>Naknohack</h1>
+
+            <p>Discord Community</p>
+
+            <!-- NÃšT DISCORD -->
+            <a class="btn"
+            href="https://discord.gg/uSWQ7rhpDp"
+            target="_blank">
+
+             My Discord
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ==================== BOTS ==================== -->
+
+    <h2 class="section-title">Discord Bots</h2>
+
+    <div class="bot-grid">
+
+        <!-- BOT SCRIPT -->
+
+        <div class="bot-card">
+
+            <!-- áº¢NH BOT SCRIPT -->
+            <img src="https://cdn.discordapp.com/attachments/1514402026501705820/1515957366917435523/file_00000000470c722f9a5e076c615e242a.png?ex=6a3ac811&is=6a397691&hm=33c7b692d7b7b5b3565e7cb041284f0a13cc48d1ba417a80e2f909a200b2e35d&">
+
+            <h3>Naknohack Script</h3>
+
+            <p>Chat Bot•Script LUA</p>
+
+            <a class="invite-btn"
+            href="https://discord.com/oauth2/authorize?client_id=1471438810121375865">
+
+            Invite Bot
+
+            </a>
+
+        </div>
+
+        <!-- BOT MINI GAME -->
+
+        <div class="bot-card">
+
+            <!-- áº¢NH BOT MINI GAME -->
+            <img src="https://cdn.discordapp.com/attachments/1514402026501705820/1515957411155021834/IMG_20250908_200323.jpg?ex=6a3ac81b&is=6a39769b&hm=c692d9b54cbaf0fe429e2d6e6cb81f3dec5967f640b6181c5de47bd1ee47fab8&">
+
+            <h3>Naknohack Mini Game</h3>
+
+            <p>Mini Game •Economy </p>
+
+            <a class="invite-btn"
+            href="https://discord.com/oauth2/authorize?client_id=1515678615013167235">
+
+            Invite Bot
+
+            </a>
+
+        </div>
+
+    </div>
+
+<h2 class="section-title">Downloads</h2>
+
+<div class="downloads-grid">
+
+    <!-- Delta VNG -->
+    <div class="download-card">
+
+        <img src="https://cdn.discordapp.com/attachments/1514402026501705820/1516037377611534490/images.jpg?ex=6a3b1295&is=6a39c115&hm=39fe7d67c24a10aeddf5dcbdc34002cd4433c00fef2154862914f4b4ce857518&">
+
+        <h3>Delta VNG</h3>
+
+        <p class="download-desc">
+            Executor Roblox VNG
+        </p>
+
+        <a class="download-btn"
+        href="https://vi.anotepad.com/note/read/hdh8mirm"
+        target="_blank">
+            Download
+        </a>
+
+    </div>
+
+    <!-- Delta Fixlag -->
+    <div class="download-card">
+
+        <img src="https://cdn.discordapp.com/attachments/1514402026501705820/1516037377611534490/images.jpg?ex=6a3b1295&is=6a39c115&hm=39fe7d67c24a10aeddf5dcbdc34002cd4433c00fef2154862914f4b4ce857518&">
+
+        <h3>Delta VNG Fixlag</h3>
+
+        <p class="download-desc">
+            Executor Roblox VNG Fixlag
+        </p>
+
+        <a class="download-btn"
+        href="https://vi.anotepad.com/note/read/hdh8mirm"
+        target="_blank">
+            Download
+        </a>
+
+    </div>
+
+    <!-- Website -->
+    <div class="download-card">
+
+        <img src="https://cdn.discordapp.com/avatars/1383962854587236393/ca9919347fbfd92b371718ba31fb2311.png?size=4096">
+
+        <h3>Website Bypass Key</h3>
+
+        <p class="download-desc">
+            Auto Bypass 
+        </p>
+
+        <a class="download-btn"
+        href="https://izen.lol/"
+        target="_blank">
+            Website
+        </a>
+
+    </div>
+
+</div>
+<!-- ==================== TRÌNH PHÁT NHC VIP PRO ==================== -->
+<div id="music-player-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; align-items: center; gap: 8px; background: rgba(24, 27, 36, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 6px 8px; border-radius: 50px; border: 1px solid rgba(88, 101, 242, 0.35); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); animation: fadePage 0.8s ease;">
+    
+    <!-- Nút Play/Pause chính -->
+    <button id="music-btn" style="background: #5865f2; color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(88,101,242,0.3);">
+        <span id="music-icon"></span> <span id="music-text">Play Music</span>
+    </button>
+    
+    <!-- Nút Next Mi Tên Vector -->
+    <button id="next-btn" style="background: rgba(255, 255, 255, 0.08); color: white; border: 1px solid rgba(255, 255, 255, 0.15); padding: 0; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; width: 38px; height: 38px;" 
+            onmouseover="this.style.background='#ff0080'; this.style.borderColor='#ff0080'; this.style.transform='scale(1.08)';" 
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='scale(1)';" 
+            title="Next Song">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 4 15 12 5 20 5 4" fill="currentColor"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19"></line>
+        </svg>
+    </button>
+    
+    <audio id="bg-audio"></audio>
+</div>
+
+<script>
+    // >>> IN CÁC LINK RAW .MP3 CA BN VÀO ÂY <<<
+    const playlist = [
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/YTDown_YouTube_SON-THUY-TRUNG-MAY-x-THUY-CHUNG-x-YEN-VO_Media_MjE3Yxrv5NY_007_48k.mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/snaptik.vn_7510806566115757319.mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/snaptik.vn_7563671846839700744.mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/YTDown_YouTube_Hen-Ho-Nhung-Khong-Yeu-Wendy-Thao-x-CaoT_Media_R8q8DtMoR9c_001_1080p.mp3"
+    ];
+
+    const audio = document.getElementById('bg-audio');
+    const btn = document.getElementById('music-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const icon = document.getElementById('music-icon');
+    const text = document.getElementById('music-text');
+
+    function playRandomSong() {
+        if (playlist.length === 0) return;
+        const randomIndex = Math.floor(Math.random() * playlist.length);
+        audio.src = playlist[randomIndex];
+        audio.play().then(() => {
+            setPlayingState();
+        }).catch(err => console.log("Auto-play b chn"));
+    }
+
+    function setPlayingState() {
+        icon.innerText = '';
+        text.innerText = 'Pause';
+        btn.style.background = '#ff0080';
+        btn.style.boxShadow = '0 4px 12px rgba(255,0,128,0.4)';
+    }
+
+    function setPausedState() {
+        icon.innerText = '';
+        text.innerText = 'Play Music';
+        btn.style.background = '#5865f2';
+        btn.style.boxShadow = '0 4px 12px rgba(88,101,242,0.3)';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (playlist.length === 0) return;
+        const randomIndex = Math.floor(Math.random() * playlist.length);
+        audio.src = playlist[randomIndex];
+
+        audio.play().then(() => {
+            setPlayingState();
+        }).catch(() => {
+            document.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    setPlayingState();
+                }
+            }, { once: true });
+        });
+    });
+
+    audio.addEventListener('ended', playRandomSong);
+
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playRandomSong();
+    });
+
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (audio.paused) {
+            audio.play();
+            setPlayingState();
+        } else {
+            audio.pause();
+            setPausedState();
+        }
+    });
+</script>
+
+<!-- 2 Th óng web b thiu -->
+</body>
+</html>
