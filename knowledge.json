@@ -1,0 +1,32 @@
+[
+  {
+    "intent": "chao_hoi",
+    "keywords": ["xin chao", "hello", "hi", "chao bot", "chao nak", "alo"],
+    "responses": [
+      "Chào bạn! Mình là Nak AI Lite. Mình có thể giúp gì cho bạn hôm nay?",
+      "Hello! Cần tìm Script hay bản tải Roblox nào cứ hỏi mình nhé."
+    ]
+  },
+  {
+    "intent": "tim_script",
+    "keywords": ["tim script", "cho xin script", "hack blox fruit", "script blox", "hoho hub", "redz", "delta"],
+    "responses": [
+      "Bạn có thể tìm thấy các Script mới nhất ở mục 'Script Hub' trên thanh menu nhé. Bạn đang cần tìm Script cho game nào?",
+      "Hệ thống bên mình có sẵn Hoho Hub, Redz Hub, Delta... Bạn qua tab Script Hub hoặc dùng thanh tìm kiếm nha!"
+    ]
+  },
+  {
+    "intent": "tai_delta",
+    "keywords": ["tai delta", "link tai", "delta vng", "delta roblox", "ban hack", "fix lag"],
+    "responses": [
+      "Để tải Delta VNG hoặc các bản Fix Lag, bạn hãy vào mục 'Roblox' ở menu bên trái. Sẽ có link trực tiếp không vượt link rút gọn đâu nhé!"
+    ]
+  },
+  {
+    "intent": "khong_hieu",
+    "keywords": [],
+    "responses": [
+      "Xin lỗi, mình chưa hiểu ý bạn lắm. Bạn có thể nói rõ hơn được không? (Hoặc thử tìm kiếm bằng từ khóa ngắn gọn hơn nhé)."
+    ]
+  }
+]
