@@ -1,0 +1,3299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naknohack Community</title>
+<meta name="description" content="Naknohack Community - Discord Bots, Roblox Scripts, Downloads">
+<meta name="theme-color" content="#5865f2">
+
+<link rel="icon" href="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/naknohackbia.png">
+
+<style>
+/* ==================== CSS GỐC V2 CỦA BẠN ==================== */
+*{ margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
+
+body{ background:#0f1117; color:white; padding:80px 20px 20px 20px; animation:fadePage .8s ease; }
+@keyframes fadePage{ from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+
+.container{ max-width:1000px; margin:auto; }
+
+.card{ background:#181b24; border-radius:25px; overflow:hidden; border:1px solid rgba(255,255,255,.08); margin-bottom:30px; }
+.banner{ height:320px; background:url("https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/naknohackbia.png") center/cover; position:relative; }
+.avatar{ width:140px; height:140px; border-radius:50%; border:6px solid #181b24; position:absolute; left:30px; bottom:-70px; object-fit:cover; transition:.4s ease; cursor:pointer; animation:avatarFloat 4s ease-in-out infinite; }
+.avatar:hover{ transform:scale(1.08) rotate(5deg); box-shadow: 0 0 20px rgba(88,101,242,.5), 0 0 40px rgba(88,101,242,.25); }
+@keyframes avatarFloat{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+
+.profile{ padding:90px 30px 30px; }
+.profile h1{ font-size:42px; }
+.profile p{ color:#aaa; margin-top:10px; }
+
+.btn{ display:inline-block; margin-top:20px; padding:14px 24px; background:#5865f2; border-radius:12px; text-decoration:none; color:white; font-weight:bold; }
+.section-title{ font-size:28px; margin:25px 0; }
+
+.bot-grid, .downloads-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+
+.bot-card{ background:#181b24; padding:20px; border-radius:20px; border:1px solid rgba(255,255,255,.05); transition:.25s; position:relative; overflow:hidden; }
+.bot-card:hover { transform:translateY(-4px); box-shadow:0 0 25px rgba(88,101,242,.35); }
+.bot-card img{ width:90px; height:90px; border-radius:50%; margin-bottom:15px; }
+.bot-card h3{ margin-bottom:10px; }
+.invite-btn{ display:inline-block; margin-top:15px; padding:12px 22px; background:#5865f2; border-radius:10px; text-decoration:none; color:white; font-weight:bold; }
+
+/* HIỆU ỨNG NEON QUÉT VIỀN GỐC */
+.download-card{ position:relative; background:rgba(24,27,36,.85); backdrop-filter:blur(10px); border-radius:24px; overflow:hidden; border:1px solid rgba(88,101,242,.25); transition:.35s ease; padding: 20px; }
+.download-card::before{ content:""; position:absolute; inset:0; padding:1px; border-radius:24px; background:linear-gradient(135deg, #00e5ff, #5865f2, #ff0080); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events: none; }
+.download-card:hover{ transform:translateY(-6px); box-shadow: 0 0 25px rgba(0,229,255,.25), 0 0 40px rgba(255,0,128,.15); }
+.download-card::after{ content:""; position:absolute; top:-100%; left:-100%; width:200%; height:200%; background:linear-gradient(45deg, transparent, rgba(0,229,255,.08), transparent); animation:scan 5s linear infinite; pointer-events: none; }
+@keyframes scan{ 0%{transform:translate(-50%,-50%) rotate(0deg);} 100%{transform:translate(50%,50%) rotate(360deg);} }
+
+.download-card img{ width:100%; height:180px; border-radius: 15px; object-fit:cover; display:block; margin-bottom: 15px; }
+.download-card h3{ margin-bottom:8px; z-index: 1; position: relative; }
+.download-desc{ color:#aaa; font-size:14px; z-index: 1; position: relative; }
+.download-btn{ display:inline-block; margin-top:15px; padding:12px 22px; background:#5865f2; border-radius:10px; text-decoration:none; color:white; font-weight:bold; z-index: 1; position: relative; }
+
+body::before{ content:""; position:fixed; inset:0; z-index:-1; background: radial-gradient(circle at 20% 20%,rgba(88,101,242,.12),transparent 25%), radial-gradient(circle at 80% 30%,rgba(0,229,255,.12),transparent 25%), radial-gradient(circle at 50% 90%,rgba(255,0,128,.10),transparent 25%); animation:bgMove 15s linear infinite alternate; }
+@keyframes bgMove{ from{transform:translateY(0);} to{transform:translateY(-40px);} }
+
+/* ==================== MENU & TAB ==================== */
+.navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(24, 27, 36, 0.9); backdrop-filter: blur(10px); padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.nav-brand { font-size: 20px; font-weight: bold; color: #5865f2; display: flex; align-items: center; gap: 10px; }
+.nav-brand img { width: 30px; height: 30px; border-radius: 50%; }
+.menu-btn { font-size: 28px; cursor: pointer; color: white; background: none; border: none; }
+
+.sidebar { position: fixed; top: 0; left: -250px; width: 250px; height: 100vh; background: #181b24; transition: 0.3s ease; z-index: 1001; border-right: 1px solid rgba(255,255,255,0.05); padding-top: 60px; }
+.sidebar.active { left: 0; }
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: white; }
+.menu-item { display: flex; align-items: center; gap: 10px; padding: 15px 25px; color: #aaa; text-decoration: none; font-size: 16px; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.2s; }
+.menu-item:hover, .menu-item.active { background: #5865f2; color: white; padding-left: 35px; }
+.menu-icon { width: 20px; height: 20px; object-fit: contain; border-radius: 4px; }
+
+/* Ẩn hiện nội dung Tab */
+.tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ==================== CSS CHO SCRIPT CARD MỚI ==================== */
+.script-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+.script-card { background: #1e1e24; border-radius: 10px; overflow: hidden; border: 1px solid #2d313a; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.script-cover { width: 100%; height: 160px; object-fit: cover; border-bottom: 2px solid #5865f2; }
+.script-info { padding: 15px; }
+.script-info h3 { color: #5865f2; margin-bottom: 8px; font-size: 18px; }
+.script-info p { color: #b9bbbe; font-size: 14px; margin-bottom: 15px; }
+
+/* Box hiển thị Code */
+.code-box { background: #0f1117; padding: 12px; border-radius: 6px; position: relative; border: 1px solid #333; }
+.code-box code { color: #43b581; font-family: Consolas, monospace; word-break: break-all; display: block; margin-bottom: 10px; font-size: 13px; max-height: 80px; overflow-y: auto; }
+.copy-btn { background: #5865f2; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 5px;}
+.copy-btn:hover { background: #4752c4; }
+
+/* Thanh tìm kiếm */
+.search-wrapper { margin-bottom: 20px; }
+
+.search-input-shell{
+    position:relative;
+    display:flex;
+    align-items:center;
+    border:1px solid #30363d;
+    border-radius:12px;
+    background:#0d1117;
+    transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.search-input-shell:focus-within{
+    border-color:#58a6ff;
+    box-shadow:0 0 0 3px rgba(88,166,255,.15);
+    transform:translateY(-1px);
+}
+
+.search-icon{
+    position:absolute;
+    left:14px;
+    width:16px;
+    height:16px;
+    color:#8b949e;
+    pointer-events:none;
+}
+
+.search-box{
+    width:100%;
+    padding:14px 76px 14px 42px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:transparent;
+    color:#c9d1d9;
+    font-size:15px;
+}
+
+.search-box::placeholder{
+    color:#8b949e;
+}
+
+.search-shortcut{
+    position:absolute;
+    right:10px;
+    padding:4px 8px;
+    border:1px solid #30363d;
+    border-radius:6px;
+    color:#8b949e;
+    font-size:12px;
+    line-height:1;
+    user-select:none;
+    background:rgba(255,255,255,.02);
+}
+
+/* --- HIỆU ỨNG CUỘN MƯỢT & REVEAL --- */
+html { scroll-behavior: smooth; }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.6s cubic-bezier(0.5, 0, 0, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* --- NỀN AURORA TỐI --- */
+body { background: #0f1117; } /* Xóa nền thừa nếu có */
+body::before {
+    content: ""; position: fixed; inset: 0; z-index: -2;
+    background: linear-gradient(180deg, #0a0b10 0%, #12151f 100%);
+}
+body::after {
+    content: ""; position: fixed; inset: -50%; z-index: -1;
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(88, 101, 242, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.08) 0%, transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(255, 0, 128, 0.08) 0%, transparent 30%);
+    animation: auroraMove 20s linear infinite alternate;
+    pointer-events: none;
+    filter: blur(60px);
+}
+@keyframes auroraMove {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* --- VIỀN RGB PHÁT SÁNG --- */
+.rgb-glow {
+    position: relative;
+    background: #181b24;
+    border-radius: 12px;
+}
+.rgb-glow::before {
+    content: ""; position: absolute; inset: -2px; z-index: -1; border-radius: inherit;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    animation: rgbGlowAnim 15s linear infinite;
+    filter: blur(6px);
+    opacity: 0.6;
+}
+@keyframes rgbGlowAnim { 
+    0% { background-position: 0 0; } 
+    100% { background-position: 400% 0; } 
+}
+
+/* --- STATS BOX HÀNG NGANG + LIVE VISITOR --- */
+.stats-box{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+    padding:16px;
+    margin-top:25px;
+    border-radius:18px;
+    background:rgba(24,27,36,.78);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.stat-item{
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 14px 12px;
+    min-height:102px;
+    border-radius:16px;
+    background:rgba(15,17,23,.7);
+    border:1px solid rgba(255,255,255,.05);
+    text-align:left;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.stat-item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px rgba(0,0,0,.25);
+}
+
+.stat-item::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:3px;
+    background:var(--accent, #5865f2);
+    opacity:.95;
+}
+
+.stat-item.stat-members{ --accent:#5865f2; }
+.stat-item.stat-online{ --accent:#43b581; }
+.stat-item.stat-views{ --accent:#00e5ff; }
+
+.stat-item.flash-up{
+    animation:flashUp .55s ease;
+}
+.stat-item.flash-down{
+    animation:flashDown .55s ease;
+}
+
+@keyframes flashUp{
+    0%{ box-shadow:0 0 0 0 rgba(67,181,129,.0); }
+    35%{ box-shadow:0 0 0 1px rgba(67,181,129,.25), 0 0 22px rgba(67,181,129,.15); }
+    100%{ box-shadow:0 0 0 0 rgba(67,181,129,.0); }
+}
+
+@keyframes flashDown{
+    0%{ box-shadow:0 0 0 0 rgba(255,90,111,.0); }
+    35%{ box-shadow:0 0 0 1px rgba(255,90,111,.25), 0 0 22px rgba(255,90,111,.15); }
+    100%{ box-shadow:0 0 0 0 rgba(255,90,111,.0); }
+}
+
+.stat-main{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    min-width:0;
+}
+
+.stat-item h3{
+    font-size:clamp(24px, 3vw, 34px);
+    font-weight:900;
+    margin:0;
+    line-height:1;
+}
+
+.stat-item p{
+    font-size:13px;
+    color:#9aa0b4;
+    font-weight:700;
+    letter-spacing:.2px;
+    margin:0;
+}
+
+.stat-trend{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:2px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.2px;
+    color:#9aa0b4;
+    white-space:nowrap;
+}
+
+.stat-trend.up{ color:#43b581; }
+.stat-trend.down{ color:#ff5a6f; }
+
+.stat-icon{
+    flex:0 0 auto;
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.04);
+    font-size:22px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+}
+
+.live-visitors{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:6px;
+    font-size:12px;
+    color:#d9e7ff;
+    font-weight:700;
+    flex-wrap:wrap;
+}
+
+.live-visitors strong{
+    color:#fff;
+    font-size:14px;
+}
+
+.live-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#43b581;
+    box-shadow:0 0 10px rgba(67,181,129,.55);
+    animation:dotPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes dotPulse{
+    0%,100%{ transform:scale(.92); opacity:.7; }
+    50%{ transform:scale(1.15); opacity:1; }
+}
+
+.count-animate{
+    animation:countPop .35s ease;
+}
+
+@keyframes countPop{
+    0%{ transform:translateY(6px); opacity:.2; }
+    50%{ transform:translateY(-2px); opacity:1; }
+    100%{ transform:translateY(0); opacity:1; }
+}
+
+@media (max-width: 900px){
+    .stats-box{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+}
+
+@media (max-width: 560px){
+    .stats-box{
+        grid-template-columns:repeat(1,minmax(0,1fr));
+    }
+}
+
+}
+// ==================== ĐIỀU KHIỂN MENU TẢI ROBLOX ====================
+function toggleRobloxDownloads(type) {
+    // Ẩn menu chính
+    document.getElementById('main-roblox-downloads').style.display = 'none';
+    
+    // Ẩn tất cả menu phụ để dọn đường
+    document.getElementById('sub-downloads-vng').style.display = 'none';
+    document.getElementById('sub-downloads-fixlag').style.display = 'none';
+
+    // Hiện menu phụ tương ứng với nút vừa bấm
+    if(type === 'vng') {
+        document.getElementById('sub-downloads-vng').style.display = 'block';
+    } else if (type === 'fixlag') {
+        document.getElementById('sub-downloads-fixlag').style.display = 'block';
+    }
+}
+
+function backToMainRoblox() {
+    // Hiện lại menu chính (trả về dạng lưới)
+    document.getElementById('main-roblox-downloads').style.display = 'grid';
+    
+    // Ẩn các menu phụ đi
+    document.getElementById('sub-downloads-vng').style.display = 'none';
+    document.getElementById('sub-downloads-fixlag').style.display = 'none';
+}
+/* ==================== NAK AI LITE ==================== */
+.ai-widget { position: fixed; bottom: 80px; right: 20px; z-index: 9999; font-family: Arial, sans-serif; }
+.ai-btn { width: 55px; height: 55px; background: linear-gradient(135deg, #00e5ff, #5865f2); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 20px rgba(88,101,242,0.4); transition: 0.3s; border: none; color: white; font-size: 24px; }
+.ai-btn:hover { transform: scale(1.1) rotate(10deg); }
+.ai-panel { position: absolute; bottom: 70px; right: 0; width: 340px; height: 450px; background: rgba(24, 27, 36, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(88,101,242,0.3); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none; transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.ai-panel.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+.ai-header { background: #5865f2; padding: 15px; color: white; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+.ai-header .close-ai { cursor: pointer; font-size: 18px; opacity: 0.8; }
+.ai-header .close-ai:hover { opacity: 1; }
+.ai-chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.ai-chat-body::-webkit-scrollbar { width: 5px; }
+.ai-chat-body::-webkit-scrollbar-thumb { background: #5865f2; border-radius: 5px; }
+.ai-msg { max-width: 85%; padding: 10px 14px; border-radius: 15px; font-size: 14px; line-height: 1.4; word-wrap: break-word; animation: aiFadeIn 0.3s ease; }
+.ai-msg.bot { background: #1e1e24; color: #fff; border-bottom-left-radius: 2px; border: 1px solid rgba(255,255,255,0.05); }
+.ai-msg.user { background: #5865f2; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
+.ai-input-area { padding: 12px; background: #0f1117; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.05); }
+.ai-input-area input { flex: 1; background: #181b24; border: 1px solid #30363d; color: white; padding: 10px 15px; border-radius: 20px; outline: none; font-size: 14px; }
+.ai-input-area input:focus { border-color: #5865f2; }
+.ai-input-area button { background: #5865f2; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+.ai-input-area button:hover { background: #4752c4; }
+.typing-indicator { font-size: 12px; color: #aaa; padding-left: 5px; font-style: italic; display: none; }
+@keyframes aiFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+</style>
+
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-brand">
+        <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/naknohacklogo.png">
+        Naknohack Community 
+    </div>
+    
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <span class="close-btn" onclick="toggleMenu()">✖</span>
+    <div class="menu-item active" onclick="switchTab('profile-tab', this)">
+         <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/Hometabweb.png" class="menu-icon" alt="Home"> Home
+             </div>
+    <div class="menu-item" onclick="switchTab('script-tab', this)">📜 Script Hub</div>
+    
+    <div class="menu-item" onclick="switchTab('roblox-tab', this)">
+        <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/robloxvb.png" class="menu-icon" alt="Roblox"> Roblox
+    </div>
+    
+    <div class="menu-item" onclick="switchTab('lq-android-tab', this)">
+        <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/lq.png" class="menu-icon" alt="LQ Android"> Liên Quân Android
+    </div>
+    
+    <div class="menu-item" onclick="switchTab('lq-ios-tab', this)">
+        <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/lq.png" class="menu-icon" alt="LQ iOS"> Liên Quân iOS
+    </div>
+    
+            <div class="menu-item" onclick="switchTab('obf-tab', this)">🔰Obfuscator
+</div>
+
+</div>
+
+
+<div class="container">
+
+    <div id="profile-tab" class="tab-content active">
+        <div class="card">
+            <div class="banner">
+                <img class="avatar" src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/naknohacklogo.png">
+            </div>
+                        <div class="profile">
+                <h1>Naknohack</h1>
+                <p>Discord Community</p>
+                <a class="btn" href="https://discord.gg/uSWQ7rhpDp" target="_blank"> My Discord</a>
+                
+                <div class="stats-box rgb-glow">
+                    <div class="stat-item stat-members">
+                        <div class="stat-main">
+                            <h3 id="discord-members" style="color: #5865f2; text-shadow: 0 0 10px rgba(88,101,242,0.3);">--</h3>
+                            <p>👤 Members</p>
+                            <span id="members-trend" class="stat-trend">Đang tải...</span>
+                        </div>
+                        <div class="stat-icon">👥</div>
+                    </div>
+
+                    <div class="stat-item stat-online">
+                        <div class="stat-main">
+                            <h3 id="discord-online" style="color: #43b581; text-shadow: 0 0 10px rgba(67,181,129,0.3);">--</h3>
+                            <p>🟢 Online</p>
+                            <span id="online-trend" class="stat-trend">Đang tải...</span>
+                        </div>
+                        <div class="stat-icon">🟢</div>
+                    </div>
+
+                    <div class="stat-item stat-views">
+                        <div class="stat-main">
+                            <h3 id="website-views" style="color: #00e5ff; text-shadow: 0 0 10px rgba(0,229,255,0.3);">--</h3>
+                            <p>👁️ Views</p>
+                            <div class="live-visitors">
+                                Đang truy cập: <strong id="website-visitors">--</strong>
+                                <span class="live-dot"></span>
+                                <span id="visitors-last-update" style="color:#9aa0b4;">--:--</span>
+                            </div>
+                        </div>
+                        <div class="stat-icon">👁️</div>
+                    </div>
+                </div>
+                </div>
+
+
+        <h2 class="section-title">Discord Bots</h2>
+        <div class="bot-grid">
+            <div class="bot-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/botnaknohackchatbot.png">
+                <h3>Naknohack Script</h3>
+                <p style="color:#aaa; font-size:14px;">Chat Bot</p>
+                <a class="invite-btn" href="https://discord.com/oauth2/authorize?client_id=1471438810121375865">Invite Bot</a>
+            </div>
+            <div class="bot-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/botnaknohackminigame.png">
+                <h3>Naknohack Mini Game</h3>
+                <p style="color:#aaa; font-size:14px;">Mini Game </p>
+                <a class="invite-btn" href="https://discord.com/oauth2/authorize?client_id=1515678615013167235">Invite Bot</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="script-tab" class="tab-content">
+        <h2 class="section-title" style="margin-top: 0;">Script Roblox</h2>
+        
+        <div class="search-wrapper">
+            <div class="search-input-shell">
+                <svg class="search-icon" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16">
+                    <circle cx="6.5" cy="6.5" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+                    <path d="M9.75 9.75L13.5 13.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                </svg>
+                <input type="text" id="searchInput" class="search-box" placeholder="Tìm kiếm..." onkeyup="filterScripts()">
+                <span class="search-shortcut">Search</span>
+            </div>
+        </div>
+
+        <div class="script-container" id="scriptList"></div>
+    </div>
+
+    <div id="roblox-tab" class="tab-content">
+    <h2 class="section-title">Downloads Roblox</h2>
+    
+    <div class="downloads-grid" id="main-roblox-downloads">
+        <div class="download-card">
+            <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+            <h3>Delta VNG</h3>
+            <p class="download-desc">Executor Roblox VNG</p>
+            <a class="download-btn" href="javascript:void(0)" onclick="toggleRobloxDownloads('vng')">Download</a>
+        </div>
+        <div class="download-card">
+            <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+            <h3>Delta VNG Fixlag</h3>
+            <p class="download-desc">Executor Roblox VNG Fixlag</p>
+            <a class="download-btn" href="javascript:void(0)" onclick="toggleRobloxDownloads('fixlag')">Download</a>
+        </div>
+        <div class="download-card">
+            <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/zen Bypass.png">
+            <h3>Website Bypass Key</h3>
+            <p class="download-desc">Auto Bypass</p>
+            <a class="download-btn" href="https://izen.lol/" target="_blank">Website</a>
+        </div>
+    </div>
+
+    <div id="sub-downloads-vng" style="display: none; animation: fadeIn 0.3s ease-in-out;">
+        <button class="btn" style="margin-bottom: 20px; display: flex; align-items: center; gap: 8px;" onclick="backToMainRoblox()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Quay Lại
+        </button>
+        <div class="downloads-grid">
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+                <h3>Delta VNG v2.275</h3>
+                <p class="download-desc">Font mặc định</p>
+                <a class="download-btn" href="https://github.com/Naknohack/Naknohackclentvng/releases/download/%40naknohack/DeltaxVNG.v2.727.apk" download>Download</a>
+            </div>
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+                <h3>Delta VNG Minecraft v2.727</h3>
+                <p class="download-desc">Font Minecraft</p>
+                <a class="download-btn" href="https://github.com/Naknohack/Naknohackclentvng/releases/download/%40naknohack/DeltaxVNG+Font.Minecraft.v2.727.apk" download>Download</a>
+            </div>
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+                <h3>Delta VNG Vệt Sơn v2.727</h3>
+                <p class="download-desc">Font Vệt Sơn</p>
+                <a class="download-btn" href="https://github.com/Naknohack/Naknohackclentvng/releases/download/%40naknohack/DeltaxVNG+Font.V.t.S.n.v2.727.apk" download>Download</a>
+            </div>
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+                <h3>Delta VNG Gotham Bold v2.727</h3>
+                <p class="download-desc">Font Gotham Bold</p>
+                <a class="download-btn" href="https://github.com/Naknohack/Naknohackclentvng/releases/download/%40naknohack/DeltaxVNG+Font.Gotham.Bold.v2.727.apk" download>Download</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="sub-downloads-fixlag" style="display: none; animation: fadeIn 0.3s ease-in-out;">
+        <button class="btn" style="margin-bottom: 20px; display: flex; align-items: center; gap: 8px;" onclick="backToMainRoblox()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Quay Lại
+        </button>
+        <div class="downloads-grid">
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+                <h3>Delta Fixlag v2.727</h3>
+                <p class="download-desc">Font mặc định</p>
+                <a class="download-btn" href="https://github.com/Naknohack/Naknohackclentvng/releases/download/%40naknohack/DeltaxVNG+Fixlag.v2.727.apk" download>Download</a>
+            </div>
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+                <h3>Delta VNG Fixlag+Font Minecraft v2.727</h3>
+                <p class="download-desc">Font Minecraft</p>
+                <a class="download-btn" href="https://github.com/Naknohack/Naknohackclentvng/releases/download/%40naknohack/DeltaxVNG+Fixlag+Font.Minecraft.v2.727.apk" download>Download</a>
+            </div>
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+                <h3>Delta VNG Fixlag+Font Vệt Sơn</h3>
+                <p class="download-desc">Font Vệt Sơn</p>
+                <a class="download-btn" href="https://github.com/Naknohack/Naknohackclentvng/releases/download/%40naknohack/DeltaxVNG+Fixlag.+Font.V.t.S.n.v2.727.apk" download>Download</a>
+            </div>
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/delta.png">
+                <h3>Delta VNG Fixlag+Font Gotham Bold</h3>
+                <p class="download-desc">Font Gotham Bold</p>
+                <a class="download-btn" href="https://github.com/Naknohack/Naknohackclentvng/releases/download/%40naknohack/DeltaxVNG+Fixlag.+Font.Gotham.Bold.v2.727.apk" download>Download</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div id="lq-android-tab" class="tab-content">
+        <h2 class="section-title">Liên Quân Android</h2>
+        <div class="downloads-grid">
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/lq.png">
+                <h3>Liên Quân 32Bit</h3>
+                <p class="download-desc">Hỗ trợ thiết bị cấu hình yếu/cũ</p>
+                <a class="download-btn" href="https://vi.anotepad.com/notes/ncmerw67" target="_blank">Download</a>
+            </div>
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/lq.png">
+                <h3>Liên Quân 64Bit</h3>
+                <p class="download-desc">Mượt mà, ổn định đồ họa cao</p>
+                <a class="download-btn" href="https://vi.anotepad.com/notes/6i5fsdr2" target="_blank">Download</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="lq-ios-tab" class="tab-content">
+        <h2 class="section-title">Liên Quân iOS</h2>
+        <div class="downloads-grid">
+            <div class="download-card">
+                <img src="https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/lq.png">
+                <h3>Liên Quân iOS</h3>
+                <p class="download-desc">Phiên bản dành cho iPhone / iPad</p>
+                <a class="download-btn" href="https://vi.anotepad.com/notes/nnjkaf58" target="_blank">Download</a>
+            </div>
+        </div>
+    </div>
+    
+<div id="music-player-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; align-items: center; gap: 8px; background: rgba(24, 27, 36, 0.85); backdrop-filter: blur(10px); padding: 6px 8px; border-radius: 50px; border: 1px solid rgba(88, 101, 242, 0.35); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+    <button id="music-btn" style="background: #5865f2; color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+        <span id="music-icon">🎵</span> <span id="music-text">Play Music</span>
+    </button>
+    <button id="next-btn" style="background: rgba(255, 255, 255, 0.08); color: white; border: 1px solid rgba(255, 255, 255, 0.15); padding: 0; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4" fill="currentColor"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+    </button>
+    <audio id="bg-audio"></audio>
+</div>
+
+        <div id="obf-tab" class="tab-content">
+        <h2 class="section-title">Lua Obfuscator</h2>
+        <div class="card" style="padding: 25px; background: rgba(24,27,36,0.85); border: 1px solid rgba(88,101,242,0.3);">
+            <p style="color: #aaa; margin-bottom: 20px; line-height: 1.5;">
+                Script Lua dán code của bạn vào khung bên trái hoặc tải file lên, sau đó bấm <b>Obfuscator</b>.
+            </p>
+            
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #5865f2;">Watermark (Tùy chỉnh nội dung chèn đầu file):</label>
+            <textarea id="obf-watermark" style="width: 100%; height: 60px; background: #0d1117; color: #43b581; border: 1px solid #30363d; border-radius: 12px; padding: 12px; margin-bottom: 20px; font-family: Consolas, monospace; resize: none;">--// This file was created by Naknohack [https://discord.gg/uSWQ7rhpDp]&#10;</textarea>
+            
+            <div style="margin-bottom: 15px;">
+                <input type="file" id="obf-file" accept=".lua, .txt" style="color: #fff; font-size: 15px;" onchange="loadCodeFromFile(this)">
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                <div>
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #fff;">Source:</label>
+                    <textarea id="obf-input-code" style="width: 100%; height: 250px; background: #0d1117; color: #fff; border: 1px solid #30363d; border-radius: 12px; padding: 12px; font-family: Consolas, monospace; resize: none;" placeholder="Dán mã script Lua vào đây hoặc tải file lên..."></textarea>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #ff0080;">Obfuscated:</label>
+                    <textarea id="obf-output-code" style="width: 100%; height: 250px; background: #0d1117; color: #43b581; border: 1px solid #30363d; border-radius: 12px; padding: 12px; font-family: Consolas, monospace; resize: none;" readonly placeholder="Kết quả sẽ hiển thị ở đây..."></textarea>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button class="btn" onclick="runObfuscator()" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; background: #5865f2; min-width: 200px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    Obfuscator 
+                </button>
+                <button class="btn" onclick="downloadObfuscated()" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; background: #43b581; min-width: 200px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ai-widget">
+    <button class="ai-btn" id="ai-toggle-btn">✨</button>
+    <div class="ai-panel" id="ai-panel">
+        <div class="ai-header">
+            <span>🤖 Nak AI Lite</span>
+            <span class="close-ai" id="ai-close-btn">✖</span>
+        </div>
+        <div class="ai-chat-body" id="ai-chat-box">
+            <div class="ai-msg bot">Xin chào! Mình là AI hỗ trợ của Naknohack. Bạn cần tìm Script hay hỏi đáp gì cứ nhắn mình nhé! ✨</div>
+        </div>
+        <div class="typing-indicator" id="ai-typing">Nak AI đang nghĩ...</div>
+        <div class="ai-input-area">
+            <input type="text" id="ai-input" placeholder="Hỏi Nak AI bất cứ điều gì..." autocomplete="off">
+            <button id="ai-send-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+    
+<script>
+    // Mở menu Mobile
+    function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
+    
+    // Logic Chuyển Tab (ẩn các tab khác và hiện tab được chọn)
+    function switchTab(tabId, element) {
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.classList.remove('active'));
+
+    const targetTab = document.getElementById(tabId);
+    if (targetTab) {
+        targetTab.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        console.warn(`Không tìm thấy thẻ HTML nào có id là: "${tabId}"`);
+    }
+
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => item.classList.remove('active'));
+
+    if (element && element.classList) {
+        element.classList.add('active');
+    }
+
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) sidebar.classList.remove('active');
+}
+
+    // DATABASE SCRIPT - Mình để sẵn 2 mẫu và chỗ gắn link ảnh
+    const scriptDatabase = [
+    { 
+        name: "Hoho Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()` 
+    },
+    { 
+        name: "Speed Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()` 
+    },
+    { 
+        name: "Omg Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()` 
+    },
+    { 
+        name: "Teddy Hub", 
+        description: "",
+         
+        code: `repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui") loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/e86ed284a22672d29e906214e7bbf8b9.lua"))()` 
+    },
+    { 
+        name: "Dragon Hub", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer  getgenv().team = "Pirates" -- Pirates or Marines loadstring(game:HttpGet("https://raw.githubusercontent.com/dragonhubdev/dragonwitheveryone/refs/heads/main/Main-BF.lua"))()` 
+    },
+    { 
+        name: "Night Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/BF-Beta.lua"))()` 
+    },
+    { 
+        name: "Adz Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/AnDepZaiHub/AnDepZaiHubBeta/refs/heads/main/AnDepZaiHubBeta.lua"))()` 
+    },
+    { 
+        name: "Bacon Hub", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer  getgenv().team = "Pirates" -- Pirates or Marines loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/Bloxfruits.lua"))()` 
+    },
+    { 
+        name: "Ronix Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fda9babd071d6b536a745774b6bc681c.lua"))()` 
+    },
+    { 
+        name: "Jade Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly/bloxfruit/refs/heads/main/Jade", true))()` 
+    },
+    { 
+        name: "Aurora Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly261/BloxFruits/main/Aurora", true))()` 
+    },
+    { 
+        name: "Vxeze Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/BF-Main.lua"))()` 
+    },
+    { 
+        name: "Hdanh Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/hdanhvip/hdanhhub/refs/heads/main/BananaHub.lua.txt"))()` 
+    },
+    { 
+        name: "Dum Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/DumHubdz/DumHubdzVN/refs/heads/main/DumHubdzVN.lua"))()` 
+    },
+    { 
+        name: "3Toc Hub", 
+        description: "",
+         
+        code: `getgenv().Team = "Marines" --// Pirates loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/245375592509cc0bcb3526982431ab18.lua"))()` 
+    },
+    { 
+        name: "Bone Hub", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer loadstring(game:HttpGet("https://raw.githubusercontent.com/Ohofo2279/ObofoRoblox/refs/heads/main/BloxFruits.lua", true))()` 
+    },
+    { 
+        name: "Sol Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/GoblinKun009/Script/refs/heads/main/SolHub", true))()` 
+    },
+    { 
+        name: "Radius Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fda9babd071d6b536a745774b6bc681c.lua"))()` 
+    },
+    { 
+        name: "God Hub", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer loadstring(game:HttpGet("https://raw.githubusercontent.com/shinichi-dz/phucshinsayhi/refs/heads/main/Loader.lua"))()` 
+    },
+    { 
+        name: "Than Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()` 
+    },
+    { 
+        name: "Quartyz Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/Loader.lua"))()` 
+    },
+    { 
+        name: "High Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly/bloxfruit/refs/heads/main/HighLoader", true))()` 
+    },
+    { 
+        name: "Heart Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly/bloxfruit/refs/heads/main/HeartHub", true))()` 
+    },
+    { 
+        name: "Rubu V6", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/RUBU/refs/heads/main/RUBUV6.lua"))()` 
+    },
+    { 
+        name: "Maru Free", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/longhihilonghihi-hub/MaruHubV1/refs/heads/main/MainV1.Lua "))()` 
+    },
+    { 
+        name: "Darksoul Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/30a80695384ce9f2c29abb8cbea83e883dd4210a3921ad7afaa91d20c339799e/download"))()` 
+    },
+    { 
+        name: "Pmt Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/trieu1082/Trieu/main/trieucanallthkngu"))()` 
+    },
+    { 
+        name: "Bear Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Huylovemy/Bearhudz/refs/heads/main/Bearhud.lua"))()` 
+    },
+    { 
+        name: "Bostur Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/thihaccff-alt/H-hhhaa/refs/heads/main/MainBosturUiRedzHub-obfuscated.lua"))()` 
+    },
+    { 
+        name: "Trẩu V10", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/trungdao2k4/buffalo/refs/heads/main/trauhubv10"))()` 
+    },
+    { 
+        name: "Turbo Lite Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/TurboLite/Script/refs/heads/main/MainV2.lua"))()` 
+    },
+    { 
+        name: "Tày Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/VTDROBLOX/Animehub/refs/heads/main/Tayhub.txt"))()` 
+    },
+    { 
+        name: "Ok Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/fakekuri/Okhubhere/refs/heads/main/MainBloxFruit.lua"))()` 
+    },
+    { 
+        name: "Thunder Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly/bloxfruit/refs/heads/main/Thunder",true))()` 
+    },
+    { 
+        name: "Dark X Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/trongdeptraihucscript/Trdz-hub/refs/heads/main/DarkXHub.lua"))()` 
+    },
+    { 
+        name: "Hao Mod Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/TranGiaHao-source/HaoModHub/refs/heads/main/HUB_VIP_BY_HAO"))()` 
+    },
+    { 
+        name: "Midnight Hub", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer getgenv().Team = "Pirates" loadstring(game:HttpGet("https://raw.githubusercontent.com/Ohofo2279/Midnight/refs/heads/main/MidnightX-BloxFruits.lua"))()` 
+    },
+    { 
+        name: "Nat Aov Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-AnhTuansitink/MainLoaderScript/refs/heads/main/ILoveH.lua"))()` 
+    },
+    { 
+        name: "Bã Mía Hub", 
+        description: "",
+         
+        code: `repeat task.wait() until game:IsLoaded() loadstring(game:HttpGet("https://raw.githubusercontent.com/Graihub/Loader-bamiahub/refs/heads/main/bamia"))()` 
+    },
+    { 
+        name: "Tuan Anh Ios Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/AnhTuanDzai-Hub/TuanAnhIOS/refs/heads/main/TuanAnhIOS-Main.Lua"))()` 
+    },
+    { 
+        name: "Ego Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/SuperIkka/Main/main/EgoLoaderMain", true))()` 
+    },
+    { 
+        name: "Buffalo Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/trungdao2k4/buffalo/refs/heads/main/buffalomain.lua"))()` 
+    },
+    { 
+        name: "Xeter V4", 
+        description: "",
+         
+        code: `getgenv().Version = "V4" getgenv().Team = "Marines" loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "Xeter V3", 
+        description: "",
+         
+        code: `getgenv().Version = "V3" getgenv().Team = "Marines" loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "Xeter V2", 
+        description: "",
+         
+        code: `getgenv().Version = "V2" getgenv().Team = "Marines" loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "Xeter V1", 
+        description: "",
+         
+        code: `getgenv().Version = "V1" getgenv().Team = "Marines" loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "King Rua Hub", 
+        description: "",
+         
+        code: `repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer  loadstring(game:HttpGet("https://raw.githubusercontent.com/shinichi-dz/phucshinyeuem/refs/heads/main/KingRuaHub.lua"))()` 
+    },
+    { 
+        name: "Rubu V5", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Bubu2k/Rubutv/refs/heads/main/rubuhubv5.lua"))()` 
+    },
+    { 
+        name: "Min V5", 
+        description: "",
+         
+        code: `getgenv().Team = "Marines" loadstring(game:HttpGet("https://github.com/LuaCrack/Min/raw/refs/heads/main/MinVnV5"))()` 
+    },
+    { 
+        name: "Leaf Hub", 
+        description: "",
+         
+        code: `repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer\nloadstring(game:HttpGet("https://github.com/LeafHubAcademy/LeafHub/raw/refs/heads/main/Leaf.lua"))()` 
+    },
+    { 
+        name: "Setting Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://pastefy.app/AjS0TLCt/raw"))()` 
+    },
+    { 
+        name: "Xova Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/sofziol1fe/Script/refs/heads/main/main.luau"))()` 
+    },
+    { 
+        name: "Orange Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/HieuDepTrai-Z/Dev_Orange/refs/heads/main/OrangeHub.lua"))()` 
+    },
+    { 
+        name: "Khá Bảnh Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/longhihilonghihi-hub/KhaBanhHubV2/refs/heads/main/obf_m92m5V2G0rk2XM6IPP1L1O701401kdJLV4V5nEyYclj029p00N3SyRWn7S1ax4Uz.lua.txt"))()` 
+    },
+    { 
+        name: "Solix Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/meobeo8/a/a/a"))()` 
+    },
+    { 
+        name: "Nazux Hub", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer  loadstring(game:HttpGet("https://raw.githubusercontent.com/NguyenAnhKhoaVN/Real_AnhKhoa_2279/refs/heads/main/Main-BloxFruitsNX.lua"))()` 
+    },
+    { 
+        name: "Rise Hub", 
+        description: "",
+         
+        code: `if not game:IsLoaded() then game.Loaded:Wait() end loadstring(game:HttpGet("https://rise-evo.xyz/apiv3/main.lua"))()` 
+    },
+    { 
+        name: "Aura Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly/bloxfruit/refs/heads/main/Aura", true))()` 
+    },
+    { 
+        name: "Cokka Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/CokkaHub.lua")()` 
+    },
+    { 
+        name: "Longhihi Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/longhihilonghihi-hub/Devs-LongHiHiV4.1.0/refs/heads/main/MainV4.1.0"))()` 
+    },
+    { 
+        name: "Moster Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/giahuy2511-coder/MonsterHub/refs/heads/main/MonsterHub"))()` 
+    },
+    { 
+        name: "Abacaxi Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/real33ms/BloxFruits/refs/heads/main/AbacaxiHubOfc.lua"))()` 
+    },
+    { 
+        name: "Meo X Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/VanHoangIOS/MeoXHub/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "Tsuo Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Tsuo7/TsuoHub/main/Tsuoscripts"))()` 
+    },
+    { 
+        name: "Xeno Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://gist.githubusercontent.com/hubedubdei-afk/1dc1fd27f4f1db90238cae54eff264dd/raw/9c8f103428355eccf1c70ec8c99911515920f877/gistfile1.txt"))()` 
+    },
+    { 
+        name: "Nht X Hub", 
+        description: "",
+         
+        code: `getgenv().Team = "Pirates"  loadstring(game:HttpGet("https://raw.githubusercontent.com/trongdeptraihucscript/Main/refs/heads/main/Hoangtrongdepzai.lua"))()` 
+    },
+    { 
+        name: "Zynex Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Hirokai-Script-make/Zynexhubbloxfruit/refs/heads/main/ZynexHub-BloxFruit-redz.lua"))()` 
+    },
+    { 
+        name: "Night Hop Boss", 
+        description: "",
+         
+        code: `getgenv().Team = "Pirates" -- Marnies\nloadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/HopScript.luau"))()` 
+    },
+    { 
+        name: "Teddy Hub Hop Sever", 
+        description: "",
+         
+        code: `repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")\nloadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM"))()` 
+    },
+    { 
+        name: "Gravity Hub Kaitun", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer\nloadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Kaitun.lua"))()` 
+    },
+    { 
+        name: "Quantum Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()` 
+    },
+    { 
+        name: "Auto Lấy Ghoul", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer\ngetgenv().Team = "Marines"\ngetgenv().Hide_UI = false\n_G.Config = {\n    Main = {\n        ["Auto Start"] = true,\n        ["Choose Mode"] = "Auto Ghoul", --// Auto Cyborg\n        ["Buy Sword Legendary"] = true,\n        ["Buy Haki Color"] = true\n    },\n    Misc = {\n        ["Select Weapon"] = "Melee",\n        ["Tweem Speed"] = 350,\n        ["FPS Boost"] = false,\n        ["Auto Rejoin"] = true,\n        ["White Screen"] = false\n    }\n}\n\nloadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/6fed5ee0756a1754"))()` 
+    },
+    { 
+        name: "Auto Lấy Cyborg", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/mizuharasup/free/refs/heads/main/cy.lua"))()` 
+    },
+    { 
+        name: "Tron Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/TRon-Void-Devs/TRon-Void-Hub-R6.1/refs/heads/main/script.lua"))()` 
+    },
+    { 
+        name: "Trẩu V9", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/trungdao2k4/trauroblox/refs/heads/main/trauv9lord.lua"))()` 
+    },
+    { 
+        name: "Zinner Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://github.com/HoangNguyenk8/Roblox/blob/main/BF-Main.luau?raw=true"))()` 
+    },
+    { 
+        name: "Rubu×Hoho", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/refs/heads/main/BloxFruit/Custom/RubuHub.lua"))()` 
+    },
+    { 
+        name: "Aoenic Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/cc4273e26a8c95d581c0632de0ac3ba9.lua"))()` 
+    },
+    { 
+        name: "Gravity Hub Find Fruit", 
+        description: "",
+         
+        code: `getgenv().Team = "Marines"\nloadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/FindFruit.lua"))()` 
+    },
+    { 
+        name: "Tekkit Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/705e7fe7aa288f0fe86900cedb1119b1.lua"))()` 
+    },
+    { 
+        name: "Yarhm Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-YARHM-12403"))()` 
+    },
+    { 
+        name: "Zee Hub Kl", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet('https://zuwz.me/Ls-Zee-Hub-KL'))()` 
+    },
+    { 
+        name: "Modmap", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Catwljzdyh/Scripts/refs/heads/main/loadmap.wljz"))()` 
+    },
+    { 
+        name: "Khfresh Hub", 
+        description: "",
+         
+        code: `--[[     WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk! ]] loadstring(game:HttpGet("https://raw.githubusercontent.com/bvect1037-alt/KhfreshHub/refs/heads/main/Titan-Fishing"))()` 
+    },
+    { 
+        name: "Kaitun Garden Horizone", 
+        description: "",
+         
+        code: `-- Minimal _G config for Kaitun-Garden.lua -- Load this before Kaitun-Garden.lua  _G.KaitunConfig = {     -- Start immediately after executing Kaitun script.     AutoStart = true,      -- Enable/disable kaitun loop at startup.     Enabled = true,      -- Auto claim all completed Daily/Weekly quests in background.     AutoClaimAllQuest = true,      -- Workflow toggles.     AutoBuySeed = true,     AutoCollect = true,     AutoSell = true,      -- Auto Maya Event: after collect, donate matching mutation fruits to Maya before sell.     AutoMayaEvent = false,      -- Auto Buy filter:     -- {"All"}                     -> buy all affordable seeds (respect stock)     -- {"Carrot Seed"}             -> buy only Carrot Seed     -- {"Carrot", "Strawberry"}    -> by plant name     BuyAllowedSeeds = {"All"},      -- Auto Plant filter:     -- {"All"}                     -> plant all seed tools in backpack/character     -- {"Carrot Seed"}             -> only plant this seed     -- {"Carrot", "Strawberry"}    -> by plant name     PlantAllowedSeeds = {"All"},      -- Delay between phases (Buy -> Plant -> Collect -> Sell).     PhaseDelay = 1.0, } loadstring(game:HttpGet("https://vxezestudio.online/api/scripts/script_28ghkfjf63o/raw"))()` 
+    },
+    { 
+        name: "Hune Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://vss.pandadevelopment.net/virtual/file/dd6e6febf7054d7b"))()` 
+    },
+    { 
+        name: "Ns Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/OhhMyGehlee/TSBG/main/Solara"))()` 
+    },
+    { 
+        name: "Senpai Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Senpai1997/Scripts/refs/heads/main/SenpaihubTheStrongestBattlegroundsAimlockAutoblock.lua"))()` 
+    },
+    { 
+        name: "Forge Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Skzuppy/forge-hub/main/loader.lua"))()` 
+    },
+    { 
+        name: "Tamhub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet"https://raw.githubusercontent.com/tamarixr/tamhub/main/bettertamhub.lua")()` 
+    },
+    { 
+        name: "Nemesis Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/x2zu/loader/main/freeloader.lua", true))()` 
+    },
+    { 
+        name: "Star Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bc25e1f8ef8aa59092de8f8f4c4fb95c.lua"))()` 
+    },
+    { 
+        name: "Cyrus Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/CyrusOffc/scriptcyrus/refs/heads/main/roblox/loader.lua"))()` 
+    },
+    { 
+        name: "Stree Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/36a1d4513a0ce188"))()` 
+    },
+    { 
+        name: "Cyra Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/LynX99-9/komtolmmek2/refs/heads/main/Garden%20Horizon"))()` 
+    },
+    { 
+        name: "Aimbot Pvp", 
+        description: "",
+         
+        code: `--[[     Credit: Hermanos-Dev, Dont Delete This. ]]--  getgenv().script_mode = "PVP" -- PVP, FARM loadstring(game:HttpGet("https://raw.githubusercontent.com/hermanos-dev/hermanos-hub/refs/heads/main/Loader.lua"))()` 
+    },
+    { 
+        name: "Kaitun Cyborg", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/mizuharasup/free/refs/heads/main/cy.lua"))()` 
+    },
+    { 
+        name: "Elderwyrm Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Vraigos/Elderwyrm-Hub-X/refs/heads/main/Scripts/Evade/Overhaul.lua"))()` 
+    },
+    { 
+        name: "Imp Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/34824c86db1eba5e5e39c7c2d6d7fdfe.lua"))()` 
+    },
+    { 
+        name: "Canhongson Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/canhongson/CanHongSon/refs/heads/main/loader.lua"))()` 
+    },
+    { 
+        name: "Noname Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/zazazawX/SSS/main/uploads/newupdate.lua'))()` 
+    },
+    { 
+        name: "Hop Sever Vip", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/anuragaming1/Meow_gaming/refs/heads/main/Servervip.lua.txt"))()` 
+    },
+    { 
+        name: "Datthg Hoho", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/refs/heads/main/BloxFruit/Custom/ThgHub.lua"))()` 
+    },
+    { 
+        name: "Wukong Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/duymanhm6-cyber/wukonghud/refs/heads/main/wukonghud"))()` 
+    },
+    { 
+        name: "Luv Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/LuvHub-Script/LuvHub/main/main/TitanFishing"))()` 
+    },
+    { 
+        name: "Kill Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/5ca430b86a718571e5342b93791f7ac17ef8107f8a93e14efdc76881346857f0/download"))()` 
+    },
+    { 
+        name: "Jumanexus Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://hub.jumanexus.net/main.lua"))()` 
+    },
+    { 
+        name: "Bacom", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://pastefy.app/Rom1wZZj/raw"))()` 
+    },
+    { 
+        name: "Jiceo", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/bao760/JICEO/refs/heads/main/jiceoBigsorry"))()` 
+    },
+    { 
+        name: "Turbo Lite", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/TurboLite/Script/main/FixLag.lua"))` 
+    },
+    { 
+        name: "Teddy Hub Lite", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletgojo/Haidepzai/refs/heads/main/Fixlag-delete100%25trash-Teddy"))()` 
+    },
+    { 
+        name: "Grai Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Graihub/GraiHubFixLag/refs/heads/main/Fixlaglite"))()` 
+    },
+    { 
+        name: "Bloxtrap", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/qwertyui-is-back/Bloxstrap/main/Initiate.lua'), 'lol')()` 
+    },
+    { 
+        name: "Fly Gui V3", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()` 
+    },
+    { 
+        name: "Vehicle Fly Gui", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui'))()` 
+    },
+    { 
+        name: "Nhoi Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Nhoiii/nhoihub/refs/heads/main/Nhoihub.lua"))()` 
+    },
+    { 
+        name: "Ok Hub Hop Sever", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/fakekuri/Okhubhere/refs/heads/main/Hopserver.lua"))()` 
+    },
+    { 
+        name: "Nakhub V3", 
+        description: "",
+         
+        code: `getgenv().Team = "Marines"\nloadstring(game:HttpGet("https://raw.githubusercontent.com/Naknohack/NakHubBF/refs/heads/main/NakHubV3.lua"))()` 
+    },
+    { 
+        name: "Trigon Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Sindex-Saliii/TrigonEvoHub/refs/heads/main/Main.luau"))()` 
+    },
+    { 
+        name: "Draco Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/RealRyx/DracoMain/refs/heads/main/DracoHubMainV1.txt"))()` 
+    },
+    { 
+        name: "Hnc Find Fruit", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/hnc-roblox/HNC_Roblox/refs/heads/main/AutoCollectFruit.lua"))()` 
+    },
+    { 
+        name: "Tdt Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/ThinhNek343/tdthub/refs/heads/main/maintdt.lua"))()` 
+    },
+    { 
+        name: "Zyn Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/GoblinKun009/Script/refs/heads/main/ZynHub", true))()` 
+    },
+    { 
+        name: "Tg Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://gist.githubusercontent.com/huynhphuoctrong10-dot/6381092d7447f3d8470ebc6bd1335d15/raw/lemon?"..math.random(1,9999)))()` 
+    },
+    { 
+        name: "Bacon Banana", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer  getgenv().team = "Marines" -- Pirates or Marines loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/Bloxfruits.lua"))()` 
+    },
+    { 
+        name: "Redz Hub", 
+        description: "",
+         
+        code: `local Settings = { JoinTeam = "Pirates", Translator = true } loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/newredz/refs/heads/main/Remake-version.luau"))(Settings)` 
+    },
+    { 
+        name: "Blue Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "Spectrum Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/spectrumxx/mainfarm/refs/heads/main/loader.lua"))()` 
+    },
+    { 
+        name: "Draconic Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Unknownproooolucky/Draconic-Hub-X/refs/heads/main/files/Evade/Overhaul.lua"))()` 
+    },
+    { 
+        name: "Bn Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Pthanhdepzai/hubmain/refs/heads/main/main"))()` 
+    },
+    { 
+        name: "Ntt Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/NTT-HUB/Script/refs/heads/main/main"))()` 
+    },
+    { 
+        name: "Dead Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/DeadScripter/Deadhub/refs/heads/main/DeadLoader.lua"))()` 
+    },
+    { 
+        name: "Express Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/d8824b23a4d9f2e0d62b4e69397d206b.lua"))()` 
+    },
+    { 
+        name: "Cat Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/realcath/lab/refs/heads/main/src/main/loader.lua"))()` 
+    },
+    { 
+        name: "Teddy Hub Kaitun V4", 
+        description: "",
+         
+        code: `getgenv().TeddyHub = { ["Allies"] = { "Name1","Name2", "Name3" }, ["Method"] = "Kill Players After Trial", ["MainAccount"] = "Name Main", ["Team"] = "Marines", ["Gear"] = "A-B-B", ["ResetAfterTrial"] = true } loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TeddyHub-KaitunV4.lua"))()` 
+    },
+    { 
+        name: "Wis Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/dy1zn4t/WisHubX/refs/heads/main/loader"))()` 
+    },
+    { 
+        name: "Airflow Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://airflowscript.com/loader"))()` 
+    },
+    { 
+        name: "Aichemy Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://getalchemy.net/r"))()` 
+    },
+    { 
+        name: "Black Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Skibidiking123/Fisch1/refs/heads/main/FischMain"))()` 
+    },
+    { 
+        name: "Neji Hub", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-NejiDepzai/Bloxfruits/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "Zen Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Itz-Npg/Roblox-Script/main/mainloader.lua", true))()` 
+    },
+    { 
+        name: "Vora Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Andrazx23/vorahub/refs/heads/main/SailorPiece.lua"))()` 
+    },
+    { 
+        name: "Glua Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/gevriel66/Gev/refs/heads/main/GTrial.lua"))()` 
+    },
+    { 
+        name: "Arvyn Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.arvynscripts.cloud/api/files/loader.lua"))()` 
+    },
+    { 
+        name: "Nakhub V4", 
+        description: "",
+         
+        code: `getgenv().Team = "Marines"\nloadstring(game:HttpGet("https://raw.githubusercontent.com/Naknohack/NakHubBF/refs/heads/main/NakHubV4.lua"))()` 
+    },
+    { 
+        name: "Orange Kaitun", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer getgenv().Config = {  ["Auto Farm"] = true,  ["Settings"] = {  ["FPS Boost"] = true,  } ,  ["Melee"] = {  ["All Melee V1"] = true,  ["Super Huamn"] = true,  ["Dragon Talon"] = true,  ["Sharkman Karate"] = true,  ["Elechic Claw"] = true,  ["GodHuman"] = true,  },  ["Sword"] = {  ["All Sword"] = true,  ["Saber"] = true,  ["Pole"] = true,  ["Rengoku"] = true,  ["Midnight Blade"] = true,  ["Soul Cane"] = true,  ["Gravity Cane"] = true,  ["Dragon Trident"] = true,  ["Legendary Sword"] = true,  ["True Triple Katana"] = true,  ["Twin Hooks"] = true,  ["Canvander"] = true,  ["Buddy Sword"] = true,  ["Hallow Scythe"] = true,  ["Yama"] = true,  ["Tushita"] = true,  ["Cursed Dual Katana"] = true,  },  ["Gun"] = {  ["All Gun"] = true,  ["Acidum Rifle"] = true,  ["Kabucha"] = true,  ["Serpent Bow"] = true,  ["Soul Guitar"] = true,  },  ["Race"] = {  ["Auto V2"] = true,  ["Auto V3"] = true,  }, } loadstring(game:HttpGet("https://raw.githubusercontent.com/HieuDepTrai-Z/Dev_OrangeVip/refs/heads/main/OrangeKaitun.lua"))()` 
+    },
+    { 
+        name: "Night Mystic Hub", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer  getgenv().team = "Marines" --  Marines or Pirates loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-NightMystic/Bloxfruits/refs/heads/main/Script.lua"))()` 
+    },
+    { 
+        name: "Anime Tong Hop", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/chuatewibu/anime/refs/heads/main/anime'))()` 
+    },
+    { 
+        name: "Eclipse Hub", 
+        description: "",
+         
+        code: `getgenv().ECp4 = {     ["Team"] = "Pirates", -- Marines/Pirates     ["Fix Lag"] = false,  -- true/false } loadstring(game:HttpGet("https://raw.githubusercontent.com/Eclipse2408/Scripts/refs/heads/main/PhahattiScripts.lua"))()` 
+    },
+    { 
+        name: "Banana", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/longhihilonghihi-hub/BananaHub/refs/heads/main/CombackVersion"))()` 
+    },
+    { 
+        name: "Lonely Hub Pvp", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/LongHip12/LonelyHub/refs/heads/main/LonelyHub-PVP.lua"))()` 
+    },
+    { 
+        name: "Vector Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://vectorhub.space"))()` 
+    },
+    { 
+        name: "Kaitun Sailor Piece", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() getgenv().Hide_UI = false -- if true it off GUI getgenv().LowCPU = true -- Remove All Map Path Boost Fps getgenv().Studio = {     ["Sailor Piece"] = {         ["Lock Fps"] = 60, -- Lock Fps         ["Rejoin Time"] = 15, -- Auto Rejoin         ["Reroll"] = {             ["Clan"] = { 'Monarch', 'Eminence' }, -- Wiki Tier List             ["Race"] = { 'Kitsune' }, -- Wiki Tier List             ["Trail"] = { 'Emperor' }, -- Wiki Tier List             ["Power"] = { 'Colossus', 'Cursebrand' }, -- Wiki Tier List             ["Rune"] = { 'Fortune Rune' } -- Wiki Tier List         }     } } loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/VxezeHubLoader/refs/heads/main/KaitunFreeSP.lua"))()` 
+    },
+    { 
+        name: "Mylti Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://pastefy.app/3bX8mKqE/raw"))()` 
+    },
+    { 
+        name: "Polluted Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/b1f30331e1af9ab6e96fc80cd00b20a9.lua"))()` 
+    },
+    { 
+        name: "Zynx Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/dusadeephenginx-sudo/roblox/main/uploads/sailor.lua"))()` 
+    },
+    { 
+        name: "Gravity Hub Main Premium", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/MainPremium.lua"))()` 
+    },
+    { 
+        name: "Gravity Hub Main", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "Night Hub Auto Pull Lever", 
+        description: "",
+         
+        code: `getgenv().Config = { Team = "Pirates", Settings = { ToolFarm = "Melee", HopDelay = 2 } } loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/PullLever.luau"))()` 
+    },
+    { 
+        name: "Ngọc Bổng V2", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://github.com/LuaCrack/NgocBong/raw/refs/heads/main/NgocBongV2"))()` 
+    },
+    { 
+        name: "Blue Hub Kaitun", 
+        description: "",
+         
+        code: `getgenv().Config = { ["Setting"] = { ["UiCheckItem"] = false, ["White Screen"] = false }, ["MainItem"] = { ["Saber"] = true, ["Hallow Scythe"] = true, ["GodHuman"] = true, ["Skull Guitar"] = true, ["Cursed Dual Katana"] = true }, ["MiscItem"] = { ["Feathered Visage"] = true, ["Pole1st"] = true, ["Dragon Trident"] = true, ["Spikey Trident"] = true, ["Buddy"] = true, ["Cavender"] = true, ["Twin Hooks"] = true, ["Gravity Blade"] = true, ["Venom Bow"] = true }, ["Quest"] = { ["Race V2"] = true, ["Race V3"] = true, ["Haki Rainbow"] = true }, ["Webhook"] = { ["Enable"] = false, ["UrlWebhook"] = "", } } loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/KaitunBloxFruits.lua"))()` 
+    },
+    { 
+        name: "Night Hub Kaitun", 
+        description: "",
+         
+        code: `getgenv().Config = { Team = "Pirates", FarmConfig = { ["Out game when done all"] = true, ["Bypass Teleport"] = true, ["Double Quest(RISK)"] = true }, Items = { ["Saber"] = true, ["Pole (1st form)"] = true, ["Skull Guitar"] = true, ["Cursed Dual Katana"] = true, ["Godhuman"] = true }, Webhook = { ["Enabled"] = false, ["Url"] = "" } } loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/d6c7959dcc94cd24467080d82a56dcf9.lua"))()` 
+    },
+    { 
+        name: "Mizu Hub Auto Lấy Cyborg", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/mizuharasup/free/refs/heads/main/cy.lua"))()` 
+    },
+    { 
+        name: "Blue Hub Auto Bounty", 
+        description: "",
+         
+        code: `getgenv().Config = { ["Setting"] = { ["Team"] = "Pirates", ["FPS Boost"] = false, ["RemoveNotification"] = false, ["Time Skip Player"] = 120 }, ["Run"] = { ["RunIfLowHealth"] = true, ["HealtRun"] = 30, ["HealthBack"] = 50, ["Teleport Y"] = 400 }, ["Skip"] = { ["Skip V4"] = false, ["Skip Fruits"] = {"Portal-Portal", "Buddha-Buddha"} }, ["Bounty"] = { ["Aimbot Camera"] = true, ["ESP Player"] = true }, ["Weapon"] = { ["Melee"] = { ["Use Melee"] = true, ["Z"] = {Enable = true, Hold = 0.1}, ["X"] = {Enable = true, Hold = 0.1}, ["C"] = {Enable = true, Hold = 0.1} }, ["Fruits"] = { ["Use Fruits"] = true, ["Z"] = {Enable = true, Hold = 0.1}, ["X"] = {Enable = true, Hold = 0.1}, ["C"] = {Enable = true, Hold = 0.1}, ["V"] = {Enable = false, Hold = 0.1}, ["F"] = {Enable = false, Hold = 0.1} }, ["Sword"] = { ["Use Sword"] = true, ["Z"] = {Enable = true, Hold = 0.1}, ["X"] = {Enable = false, Hold = 0.1} }, ["Gun"] = { ["Use Gun"] = false, ["Z"] = {Enable = false, Hold = 0.1}, ["X"] = {Enable = false, Hold = 0.1} }, }, ["Misc"] = { ["Active Race V3"] = true, ["Active Race V4"] = true, ["Random And Store Fruits"] = false }, ["Webhook"] = { ["UrlWebhook"] = "", ["Enable"] = false } } loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/...../refs/heads/main/FarmBounty.lua"))()` 
+    },
+    { 
+        name: "Night Hub Auto Bounty", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded() getgenv().Config = { ["Team"] = "Pirates", ["Settings"] = { ["Specator Target"] = false, ["Others"] = { ["Auto Awakening V4"] = true, ["Auto Turn Race V3"] = true, }, ["Skip V4 Player"] = true, ["Skip Fruit"] = {"Portal-Portal", "Buddha-Buddha", "Kitsune-Kitsune", "Dragon-Dragon", "Pain-Pain"}, ["Low Health"] = { ["Min"] = 4000, ["Max"] = 6000 } }, ["Weapon"] = { ["Melee"] = { ["Enable"] = true, ["Delay"] = 0.1, ["Skills"] = { ["Z"] = {["Enable"] = true, ["Hold"] = 0}, ["X"] = {["Enable"] = true, ["Hold"] = 0}, ["C"] = {["Enable"] = true, ["Hold"] = 0}, } }, ["Sword"] = { ["Enable"] = true, ["Delay"] = 0.1, ["Skills"] = { ["Z"] = {["Enable"] = true, ["Hold"] = 0}, ["X"] = {["Enable"] = true, ["Hold"] = 0}, } }, ["Gun"] = { ["Enable"] = true, ["Delay"] = 0.1, ["Skills"] = { ["Z"] = {["Enable"] = true, ["Hold"] = 0}, ["X"] = {["Enable"] = true, ["Hold"] = 0}, } }, ["Blox Fruit"] = { ["Enable"] = true, ["Delay"] = 0.1, ["Skills"] = { ["Z"] = {["Enable"] = true, ["Hold"] = 0}, ["X"] = {["Enable"] = true, ["Hold"] = 0}, ["C"] = {["Enable"] = true, ["Hold"] = 0}, ["V"] = {["Enable"] = false, ["Hold"] = 0}, ["F"] = {["Enable"] = true, ["Hold"] = 0}, } }, } } loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/Auto-Bounty.luau"))()` 
+    },
+    { 
+        name: "Night Hub Auto Bounty M1 Fruits", 
+        description: "",
+         
+        code: `getgenv().Config = { Team = "Pirates", HideUI = true, HuntConfig = { ["Earned Notification Enabled"] = false, ["Reset Farm (New)"] = true, ["Chat"] = false, ["Farm Delay"] = 0.22, ["Webhook"] = { Enabled = false, Url = "" } } } loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/2ffcdb62773f587bfb9eb0d52bb35b0c.lua"))()` 
+    },
+    { 
+        name: "Foxname Survive Zombie Arena", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/Foxname_SZA.lua"))()` 
+    },
+    { 
+        name: "Gumnaba", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/SurviveZombieArena"))()` 
+    },
+    { 
+        name: "Aura Hub Kaitun", 
+        description: "",
+         
+        code: `Config = { Team = "Pirates", FPS = 15, Configuration = { HopWhenIdle = true, AutoHop = true, AutoHopDelay = 60 * 60, FpsBoost = false, blackscreen = false }, Fruit ={ Sniper = true, Fruit = {"Kitsune-Kitsune"} }, Items = { AutoFullyMelees = true, Saber = true, CursedDualKatana = false, SoulGuitar = true, RaceV2 = true }, Settings = { StayInSea2UntilHaveDarkFragments = false } } loadstring(game:HttpGet("https://www.xhider.xyz/raw/DevAuraHub/Kaitun"))()` 
+    },
+    { 
+        name: "Blue Hub Auto Pull Lever", 
+        description: "",
+         
+        code: `getgenv().Config = { ["Setting"] = { ["WeaponAttack"] = "Melee", ["FPSBoost"] = false, ["BlackScreen"] = false, }, ["Webhook"] = { ["Enable"] = false, ["UrlWebhook"] = "", } } loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/AutoPullLever.luau"))()` 
+    },
+    { 
+        name: "Nana Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/tamdznanatv/bananapremium/refs/heads/main/nanaXbanana.luau"))()` 
+    },
+    { 
+        name: "Combowick Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaioshin3/COMBOWICK/refs/heads/main/obfuscated_script-1779432709714.lua.txt"))() -- Key: ThankYouForSupportingMe` 
+    },
+    { 
+        name: "W-Azure Free", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/YeuEmNhieuLam/refs/heads/main/w-azure.luau"))()` 
+    },
+    { 
+        name: "Night Hub Find Fruit", 
+        description: "",
+         
+        code: `getgenv().Config = { Team = "Pirates", Settings = { BlacklistFruits = {"Rocket Fruit", "Blade Fruit", "Smoke Fruit"}, WebhookStoreFruit = { Enabled = true, Url = "" } } } loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/290b11f6d622446241703db34703dea3.lua"))()` 
+    },
+    { 
+        name: "Realkid Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()` 
+    },
+    { 
+        name: "Vxeze Kaitun Gag 2", 
+        description: "",
+         
+        code: `getgenv().VxezeKaitun = { Enabled = true, AutoBuySeeds = true, AutoBuyGears = false, AutoPlant = true, AutoCollectFruit = true, AutoSellFruit = true, AutoCollectSeedPack = true, FpsBoost = true, CollectGoldSeed = true, CollectRainbowSeed = true, GearPriority = "AfterPlant", StockpileSeeds = true, SellWhenInventoryFull = true, InventorySellBuffer = 1, SellThreshold = 5, MinShecklesToSpend = 0, BuyDelay = 0.1, PlantDelay = 0.3, CollectDelay = 0.08, SellDelay = 0.1, IdleDelay = 0.35, LoopDelay = 0.08, MaxSeedBuysPerCycle = 5, MaxGearBuysPerCycle = 3, MaxPlantPerCycle = 30, MaxCollectPerCycle = 40, MaxSellPerCycle = 30, PlantYOffset = 3.5, PlantTweenSpeed = 50, PlantOccupiedSpacing = 2.0, SeedEnabled = { All = false, Carrot = true, Strawberry = true, Blueberry = true, Tulip = true, Tomato = true, Apple = true, Bamboo = true, Corn = true, Cactus = true, Pineapple = true, Mushroom = true, ["Green Bean"] = true, Banana = true, Grape = true, Coconut = true, Mango = true, ["Dragon Fruit"] = true, Acorn = true, Cherry = true, Sunflower = true, ["Venus Fly Trap"] = true, Pomegranate = true, ["Poison Apple"] = true, ["Moon Bloom"] = true, ["Dragon's Breath"] = true, ["Ghost Pepper"] = true, ["Poison Ivy"] = true, ["Baby Cactus"] = true, ["Glow Mushroom"] = true, Romanesco = true, ["Horned Melon"] = true, }, GearEnabled = { All = false, ["Common Watering Can"] = false, ["Common Sprinkler"] = false, Sign = false, Lantern = false, Trowel = false, ["Speed Mushroom"] = false, ["Jump Mushroom"] = false, Gnome = false, ["Shrink Mushroom"] = false, ["Supersize Mushroom"] = false, ["Invisibility Mushroom"] = false, Wheelbarrow = false, Teleporter = false, ["Super Watering Can"] = false, ["Basic Pot"] = false, Flashbang = false, }, FruitEnabled = { All = true, }, } if not getgenv().VxezeKaitunRunning then loadstring(game:HttpGet("https://gist.githubusercontent.com/angeryy-tvy/e284f6d9b679f604c1eab3c30ad0d51f/raw/GAG2-Kaitun-Vxeze"))() end` 
+    },
+    { 
+        name: "Night Hub Gag 2", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/GAG2.luau"))()` 
+    },
+    { 
+        name: "Nova Hub", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Real-Nova-X-Hub/all-game/refs/heads/main/skidder-Yes.lua"))()` 
+    },
+    { 
+        name: "Blue Hub Kaitun Gag 2", 
+        description: "",
+         
+        code: `getgenv().Config = { ["Setting"] = { ["White Screen"] = false }, ["Main"] = { ["Max Plant"] = 200, ["Expand Garden"] = true, ["Destroy Plants Priced Under 40% Most Expensive Plant"] = false, ["Collect Gold/Rainbow Seed"] = true, ["Attack Player Steal Your Fruits"] = true, ["FPS Boost"] = false }, ["Plant Seed"] = { ["Enable"] = true, ["Seed"] = {"Bamboo","Mushroom"} }, ["Buy Seed"] = { ["Enable"] = true, ["Seed"] = {"Bamboo", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Acorn", "Cherry", "Venus Fly Trap", "Pomegranate", "Poison Apple", "Moon Bloom", "Dragon's Breath", "Ghost Pepper", "Poison Ivy", "Baby Cactus", "Glow Mushroom", "Romanesco", "Horned Melon"} }, ["Buy Gear"] = { ["Enable"] = false, ["Gear"] = {"Common Watering Can","Common Sprinkler","Uncommon Sprinkler","Rare Sprinkler","Legendary Sprinkler","Super Watering Can","Super Sprinkler"} }, ["Buy Pet"] = { ["Enable"] = true, ["Pet"] = {"IceSerpent","Raccoon","Unicorn","GoldenDragonfly","BlackDragon","Monkey","Bee","Robin"} }, ["Use Gear"] = { ["Use Watering Can"] = false, ["Use Sprinkler"] = false }, ["Favorite"] = { ["Enable"] = false, ["Rarity Fruits"] = {"Legendary","Mythic","Super"}, ["Mutation"] = {"Starstruck","Bloodlit","Solarflare"}, ["Minium Weight"] = 50 }, ["Mailbox"] = { ["Enable"] = false, ["Username"] = "", ["Note"] = "Send By Blue X Hub Kaitun", ["Delay"] = 40, ["Seed"] = {}, ["Gear"] = {}, ["Pet"] = {} }, ["Webhook"] = { ["Enable"] = false, ["UrlWebhook"] = "", ["Favorite Fruits"] = true, ["Gold/Rainbow Seed"] = true, ["Buy Pet"] = true, ["Send Profile Player"] = true, ["Delay Send Profile Player"] = 180 }, } loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/...../refs/heads/main/KaitunGag2.lua"))()` 
+    },
+    { 
+        name: "Teddy Hub Kaitun Gag 2", 
+        description: "",
+         
+        code: `local env = _G pcall(function() if type(getgenv) == "function" then env = getgenv() end end) if env.TeddyHub then return end env.TeddyHub = true env.OnelcickGaG2 = true local Settings = { AutoBuyGears = true, AutoBuySeeds = true, AutoCollectSeedPack = true, AutoExpandGarden = true, AutoHarvest = true, AutoPlant = true, AutoSell = true, Enabled = true, AutoShovel = false, AutoShovelRarity = {}, MaxPlantsBeforeShovel = 200, AutoSprinkler = false, UseSprinkler = "Best", AutoSprinklerMinRarity = "Common", Gift = { Enabled = false, Account = "name account", Pet = {"All"}, Seed = {"All"}, Gear = {"All"} }, MaxSecondsOutside = 15, AutoPauseEvents = true, PauseEvents = {"Bloodmoon", "Rainbow Moon"}, SeedBuy = { All = false, ["Acorn"] = false, ["Apple"] = false, ["Baby Cactus"] = true, ["Bamboo"] = true, ["Banana"] = true, ["Blueberry"] = true, ["Cactus"] = true, ["Carrot"] = true, ["Cherry"] = true, ["Coconut"] = true, ["Corn"] = true, ["Dragon Fruit"] = true, ["Dragon's Breath"] = true, ["Ghost Pepper"] = true, ["Glow Mushroom"] = true, ["Grape"] = true, ["Green Bean"] = true, ["Horned Melon"] = true, ["Mango"] = true, ["Moon Bloom"] = true, ["Mushroom"] = true, ["Pineapple"] = true, ["Poison Apple"] = true, ["Poison Ivy"] = true, ["Pomegranate"] = true, ["Romanesco"] = true, ["Strawberry"] = true, ["Sunflower"] = true, ["Tomato"] = true, ["Tulip"] = true, ["Venus Fly Trap"] = true, }, PlantAllSeed = true, SeedPlant_Rainbow = false, SeedPlant_Gold = false, ["Pet_Bee"] = true, ["Pet_BlackDragon"] = true, ["Pet_Bunny"] = true, ["Pet_Deer"] = true, ["Pet_Frog"] = true, ["Pet_GoldenDragonfly"] = true, ["Pet_IceSerpent"] = true, ["Pet_Monkey"] = true, ["Pet_Owl"] = true, ["Pet_Raccoon"] = true, ["Pet_Robin"] = true, ["Pet_Unicorn"] = true, AutoBuyPetSlots = false, AutoBuyPets = false, BuySlotPet = 5, EquipPetsEnabled = true, EquipPetList = { {"Unicorn", 1}, {"GoldenDragonfly", 2}, {"Robin", 3}, {"Deer", 4}, }, Hidemap = false, FpsBooster = false, PetRadar = true, ["Gear_Common Sprinkler"] = false, ["Gear_Legendary Sprinkler"] = false, ["Gear_Rare Sprinkler"] = false, ["Gear_Super Sprinkler"] = false, ["Gear_Uncommon Sprinkler"] = false, Fruit_All = false, Fruit_Acorn = true, Fruit_Apple = true, ["Fruit_Baby Cactus"] = true, Fruit_Bamboo = true, Fruit_Banana = true, Fruit_Blueberry = true, Fruit_Cactus = true, Fruit_Carrot = true, Fruit_Cherry = true, Fruit_Coconut = true, Fruit_Corn = true, ["Fruit_Dragon Fruit"] = true, ["Fruit_Dragon's Breath"] = true, ["Fruit_Ghost Pepper"] = true, ["Fruit_Glow Mushroom"] = true, Fruit_Grape = true, ["Fruit_Green Bean"] = true, ["Fruit_Horned Melon"] = true, Fruit_Mango = true, ["Fruit_Moon Bloom"] = true, Fruit_Mushroom = true, Fruit_Pineapple = true, ["Fruit_Poison Apple"] = true, ["Fruit_Poison Ivy"] = true, ["Fruit_Pomegranate"] = true, ["Fruit_Romanesco"] = true, ["Fruit_Strawberry"] = true, Fruit_Sunflower = true, Fruit_Tomato = true, Fruit_Tulip = true, ["Fruit_Venus Fly Trap"] = true, } loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TeddyHub-OneclickGaG2.lua"))()` 
+    },
+    { 
+        name: "Gravity Hub Main Gag 2", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/GrowAGarden2/refs/heads/main/Main.lua"))()` 
+    },
+    { 
+        name: "Hinishi Hub", 
+        description: "",
+         
+        code: `local Settings = { JoinTeam = "Pirates"; Translator = true; } loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-Hinishi/Hinishi-Hub/refs/heads/main/Freemium.lua"))(Settings)` 
+    },
+    { 
+        name: "Speed Hub Kaitun Gag 2", 
+        description: "",
+         
+        code: `getgenv().Config = { ["Main Features"] = { ["Auto Plant"] = true, ["Auto Sell"] = true, ["Auto Buy Seed"] = true, ["Auto Buy Gear"] = true, ["Auto Use Gear"] = true }, ["Auto Expand Garden"] = true, ["Optimization"] = { ["Workspace Cleaner"] = true, ["Black Screen"] = false, ["FPS Cap"] = 60, ["Auto Set FPS"] = true, }, ["Other Features"] = { ["Auto Shovel"] = true, ["Auto Catch Pet"] = true, ["Auto Equip Pets"] = true, ["Auto Optimize Pets"] = true, ["Auto Upgrade Pet Slots"] = true, ["Auto Tutorial"] = true }, ["Codes"] = { ["Auto Redeem Codes"] = true, ["Codes To Redeem"] = { "TEAMGREENBEAN", } }, ["Auto Pickup Mutation Seeds"] = true, ["Teleport To Seed Packs"] = true, ["Auto Plant Mutation Seeds"] = false, ["Sell After"] = 30, ["Mutation Seeds To Plant"] = {}, ["Gear To Buy"] = {}, ["Buy Pets"] = { ["Monkey"] = 99, ["Bee"] = 99, ["BlackDragon"] = 99, ["GoldenDragonfly"] = 99, ["Unicorn"] = 99, ["Raccoon"] = 99, ["IceSerpent"] = 99, ["Robin"] = 5, ["Deer"] = 5, }, ["Equip Pets"] = { {"Unicorn", 5, 1}, {"GoldenDragonfly", 10, 2}, {"Robin", 5, 3}, {"Deer", 5, 4}, }, ["Buy Gears"] = { ["Super Watering Can"] = 9999, ["Super Sprinkler"] = 9999, }, ["Use Sprinkler"] = { "Super Sprinkler", "Legendary Sprinkler", "Rare Sprinkler", "Uncommon Sprinkler", "Common Sprinkler", }, ["Collect Mutated Plants"] = { "Bamboo", "Mushroom", "Green Bean" }, ["Seeds To Plant"] = { ["Carrot"] = 15, ["Strawberry"] = 15, ["Blueberry"] = 15, ["Tulip"] = 15, ["Tomato"] = 15, ["Apple"] = 15, ["Corn"] = 15, ["Bamboo"] = 30, ["Mushroom"] = 30, ["Cactus"] = 30, ["Pineapple"] = 30, ["Green Bean"] = 30, ["Banana"] = 30, ["Grape"] = 30, ["Coconut"] = 30, ["Mango"] = 30, ["Dragon Fruit"] = 30, ["Acorn"] = 30, ["Cherry"] = 30, ["Sunflower"] = 30, }, ["Buy Seeds"] = {}, ["Expand Plot"] = 1, ["Max Pet Slots"] = 0, ["Pet Catch Webhook"] = { Enabled = true, Url = "", Note = "Gag2", Mention = "@everyone Found: " }, ["Seed Pack Webhook"] = { Enabled = true, Url = "", Note = "Gag2" }, ["Auto Send Mail"] = false, ["Mail To Send"] = {}, } loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/refs/heads/main/Kaitun/Grow%20A%20Garden%202", true))()` 
+    },
+    { 
+        name: "Banana Cat Hub Free", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/x2RunE/paid_script_cracked/refs/heads/main/banana-cat/loader.lua"))()` 
+    },
+    { 
+        name: "Gravity Hub Kaitun GAG 2", 
+        description: "",
+         
+        code: `getgenv().Config={["Harvest"]={["Enable"]=true,["Rarity"]="All",["Filter"]={"All"},["Ignore Mutations"]={},["Pause"]=false,["Pause Events"]={},},["Sell"]={["Enable"]=true,["When Full"]=true,},["Seed"]={["Auto Collect"]=true,},["Seed Pack"]={["Auto Pick"]=true,},["Steal"]={["Enable"]=false,["Blacklist"]={},},["Anti Steal"]={["Enable"]=false,},["Plant"]={["Enable"]=true,["Mode"]="Random In Plot",["Seed Mode"]="All Seed",},["Buy"]={["Seed"]={["Enable"]=true,["List"]={["Carrot"]=true,["Strawberry"]=true,["Blueberry"]=true,["Tulip"]=true,["Tomato"]=true,["Apple"]=true,["Bamboo"]=true,["Corn"]=true,["Cactus"]=true,["Pineapple"]=true,["Mushroom"]=true,["Green Bean"]=true,["Banana"]=true,["Grape"]=true,["Coconut"]=true,["Mango"]=true,["Dragon Fruit"]=true,["Acorn"]=true,["Cherry"]=true,["Sunflower"]=true,["Venus Fly Trap"]=true,["Pomegranate"]=true,["Poison Apple"]=true,["Moon Bloom"]=true,["Dragon's Breath"]=true,["Ghost Pepper"]=true,["Poison Ivy"]=true,["Baby Cactus"]=true,["Glow Mushroom"]=true,["Romanesco"]=true,["Horned Melon"]=true,},},["Pet"]={["Enable"]=false,["List"]={"IceSerpent","Raccoon","Unicorn","GoldenDragonfly","BlackDragon","Monkey","Bee","Robin"},},["Gear"]={["Enable"]=false,["List"]={"Common Watering Can","Common Sprinkler","Uncommon Sprinkler","Rare Sprinkler","Legendary Sprinkler","Super Watering Can","Super Sprinkler"},},},["Shovel"]={["Enable"]=false,["Rarity"]="All",},["Stand Center"]={["Enable"]=true,["Height"]=3,["Interval"]=2,},["Max Plant Fruit"]=200,["Buy Expand Plot"]=false,["Buy Slot Pet"]=false,["Movement"]={["Tween Speed"]=300,["Move Mode"]="Tween",},["Settings"]={["Anti AFK"]=true,["Plant Delay"]=0.3,["Harvest Delay"]=0.1,["Sell Delay"]=0.2,["Shovel Delay"]=0.1,},["Webhook"]={["Enable"]=false,["URL"]="",["Username"]="Gravity Hub",},}loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/GrowAGarden2/refs/heads/main/Kaitun.lua"))()` 
+    },
+    { 
+        name: "Banana Cat Main GAG 2", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/x2RunE/paid_script_cracked/refs/heads/main/banana-cat/gag2MainLoader.lua'))()` 
+    },
+    { 
+        name: "Banana Cat Kaitun GAG 2", 
+        description: "",
+         
+        code: `getgenv().Config = {["Max Plant Fruit"]=200,["Buy Expand Plot"]=true,["Buy Slot Pet"]=true,["Pet"]={["Auto Buy"]={["Enable"]=true,["Pet"]={["IceSerpent"]=true,["Raccoon"]=true,["Unicorn"]=true,["GoldenDragonfly"]=true,["BlackDragon"]=true,["Monkey"]=true,["Bee"]=true,["Robin"]=true,["Deer"]=false,["Owl"]=false,["Bunny"]=false,["Frog"]=false,},},},["Mail"]={["Enable"]=false,["Username"]="",["Note"]="auto-shipped from main",["IntervalSec"]=30,["Pet"]={["IceSerpent"]=false,["Raccoon"]=false,["Unicorn"]=false,["GoldenDragonfly"]=false,["BlackDragon"]=false,["Monkey"]=false,["Bee"]=false,["Robin"]=false,["Deer"]=false,["Owl"]=false,["Bunny"]=false,["Frog"]=false,},["Seed"]={["Rainbow"]=false,["Gold"]=false,},},["Plant Seed"]={["Enable"]=true,["Seed"]={["Bamboo"]=true,["Blueberry"]=true,["Tulip"]=true,["Apple"]=true,["Tomato"]=true,["Banana"]=true,["Sunflower"]=true,["Corn"]=true,["Mushroom"]=true,["Cherry"]=true,["Mango"]=true,["Grape"]=true,["Coconut"]=true,["Cactus"]=true,["Baby Cactus"]=true,["Pomegranate"]=true,["Pineapple"]=true,["Dragon Fruit"]=true,["Poison Apple"]=true,["Moon Bloom"]=true,["Poison Ivy"]=true,["Ghost Pepper"]=true,["Venus Fly Trap"]=true,["Dragon's Breath"]=true,},},["Buy Seed"]={["Enable"]=true,["Seed"]={["Bamboo"]=true,["Blueberry"]=true,["Tulip"]=true,["Apple"]=true,["Tomato"]=true,["Banana"]=true,["Sunflower"]=true,["Corn"]=true,["Mushroom"]=true,["Cherry"]=true,["Mango"]=true,["Grape"]=true,["Coconut"]=true,["Cactus"]=true,["Baby Cactus"]=true,["Pomegranate"]=true,["Pineapple"]=true,["Dragon Fruit"]=true,["Poison Apple"]=true,["Moon Bloom"]=true,["Poison Ivy"]=true,["Ghost Pepper"]=true,["Venus Fly Trap"]=true,["Dragon's Breath"]=true,},},["Buy Gear"]={["Enable"]=false,["Gear"]={["Common Watering Can"]=true,["Super Watering Can"]=true,["Common Sprinkler"]=true,["Uncommon Sprinkler"]=true,["Rare Sprinkler"]=true,["Legendary Sprinkler"]=true,["Super Sprinkler"]=true,},},["Auto Water"]={["Enable"]=false,},["Auto Sprinkler"]={["Enable"]=false,},["Webhook"]={["Enable"]=false,["URL"]="",["Username"]="OneClick GAG2",["OnRarePet"]=true,["OnRareSeed"]=true,["PetMinPrice"]=0,["PetRarity"]={["Common"]=false,["Uncommon"]=false,["Rare"]=false,["Legendary"]=true,["Mythic"]=true,["Super"]=true,["Divine"]=true,["Prismatic"]=true,},["ProfileReport"]=false,["ProfileIntervalMin"]=30,},} loadstring(game:HttpGet('https://raw.githubusercontent.com/x2RunE/paid_script_cracked/refs/heads/main/banana-cat/gag2kaitunLoader.lua'))()` 
+    },
+    { 
+        name: "Vxeze Hub Kaitun GAG 2", 
+        description: "",
+         
+        code: `getgenv().GAG2KaitunConfig = {
+    Enabled = true,
+
+    Automation = {
+        AutoBuySeeds = true,
+        AutoPlantSeeds = true,
+        AutoCollectFruit = true,
+        AutoSellFruit = true,
+        AutoBuyGear = true,
+        AutoBuyPet = false,
+        AutoCollectSeedPack = true,
+        AutoMail = false,
+        FPSBoost = true,
+        AntiAfk = true,
+        AntiWheelbarrow = true,
+    },
+
+    BuySeedWhitelist = {
+        All = true,
+        Acorn = true,
+        Apple = true,
+        ["Baby Cactus"] = true,
+        Bamboo = true,
+        Banana = true,
+        Blueberry = true,
+        Cactus = true,
+        Carrot = true,
+        Cherry = true,
+        Coconut = true,
+        Corn = true,
+        ["Dragon Fruit"] = true,
+        ["Dragon's Breath"] = true,
+        ["Ghost Pepper"] = true,
+        ["Glow Mushroom"] = true,
+        Gold = true,
+        Grape = true,
+        ["Green Bean"] = true,
+        ["Horned Melon"] = true,
+        Hypnobloom = true,
+        Mango = true,
+        ["Moon Bloom"] = true,
+        Mushroom = true,
+        Pineapple = true,
+        ["Poison Apple"] = true,
+        ["Poison Ivy"] = true,
+        Pomegranate = true,
+        Rainbow = true,
+        Romanesco = true,
+        Strawberry = true,
+        Sunflower = true,
+        Tomato = true,
+        Tulip = true,
+        ["Venom Spitter"] = true,
+        ["Venus Fly Trap"] = true,
+    },
+
+    PlantSeedWhitelist = {
+        All = true,
+        Acorn = true,
+        Apple = true,
+        ["Baby Cactus"] = true,
+        Bamboo = true,
+        Banana = true,
+        Blueberry = true,
+        Cactus = true,
+        Carrot = true,
+        Cherry = true,
+        Coconut = true,
+        Corn = true,
+        ["Dragon Fruit"] = true,
+        ["Dragon's Breath"] = true,
+        ["Ghost Pepper"] = true,
+        ["Glow Mushroom"] = true,
+        Gold = false,
+        Grape = true,
+        ["Green Bean"] = true,
+        ["Horned Melon"] = true,
+        Hypnobloom = true,
+        Mango = true,
+        ["Moon Bloom"] = true,
+        Mushroom = true,
+        Pineapple = true,
+        ["Poison Apple"] = true,
+        ["Poison Ivy"] = true,
+        Pomegranate = true,
+        Rainbow = false,
+        Romanesco = true,
+        Strawberry = true,
+        Sunflower = true,
+        Tomato = true,
+        Tulip = true,
+        ["Venom Spitter"] = true,
+        ["Venus Fly Trap"] = true,
+    },
+
+    FruitWhitelist = {
+        All = true,
+        Acorn = true,
+        Apple = true,
+        ["Baby Cactus"] = true,
+        Bamboo = true,
+        Banana = true,
+        Blueberry = true,
+        Cactus = true,
+        Carrot = true,
+        Cherry = true,
+        Coconut = true,
+        Corn = true,
+        ["Dragon Fruit"] = true,
+        ["Dragon's Breath"] = true,
+        ["Ghost Pepper"] = true,
+        ["Glow Mushroom"] = true,
+        Gold = true,
+        Grape = true,
+        ["Green Bean"] = true,
+        ["Horned Melon"] = true,
+        Hypnobloom = true,
+        Mango = true,
+        ["Moon Bloom"] = true,
+        Mushroom = true,
+        Pineapple = true,
+        ["Poison Apple"] = true,
+        ["Poison Ivy"] = true,
+        Pomegranate = true,
+        Rainbow = true,
+        Romanesco = true,
+        Strawberry = true,
+        Sunflower = true,
+        Tomato = true,
+        Tulip = true,
+        ["Venom Spitter"] = true,
+        ["Venus Fly Trap"] = true,
+    },
+
+    GearWhitelist = {
+        All = true,
+        ["Basic Pot"] = true,
+        ["Common Sprinkler"] = true,
+        ["Common Watering Can"] = true,
+        Flashbang = true,
+        Gnome = true,
+        ["Grappling Hook"] = true,
+        ["Invisibility Mushroom"] = true,
+        ["Jump Mushroom"] = true,
+        ["Legendary Pet Teleporter"] = true,
+        ["Legendary Sprinkler"] = true,
+        Megaphone = true,
+        ["Mythic Pet Teleporter"] = true,
+        ["Player Magnet"] = true,
+        ["Rare Sprinkler"] = true,
+        ["Shrink Mushroom"] = true,
+        Sign = true,
+        ["Speed Mushroom"] = true,
+        ["Strawberry Sniper"] = true,
+        ["Super Pet Teleporter"] = true,
+        ["Super Sprinkler"] = true,
+        ["Super Watering Can"] = true,
+        ["Supersize Mushroom"] = true,
+        Teleporter = true,
+        Trowel = true,
+        ["Uncommon Sprinkler"] = true,
+        Wheelbarrow = true,
+    },
+
+    PetWhitelist = {
+        All = true,
+        Bear = true,
+        Bee = true,
+        BlackDragon = true,
+        Bunny = true,
+        Deer = true,
+        Dragonfly = true,
+        Frog = true,
+        GoldenDragonfly = true,
+        IceSerpent = true,
+        Monkey = true,
+        Owl = true,
+        Raccoon = true,
+        Robin = true,
+        Turtle = true,
+        Unicorn = true,
+    },
+
+    Mail = {
+        RecipientUsername = "",
+        RecipientUserId = 0,
+        Note = "auto gift from vxezehub",
+        IntervalSec = 30,
+        MaxItemsPerBatch = 20,
+        KeepEachGear = 0,
+        KeepEachSeed = 0,
+    },
+
+    MailGearWhitelist = {
+        All = false,
+        ["Basic Pot"] = false,
+        ["Common Sprinkler"] = false,
+        ["Common Watering Can"] = true,
+        Flashbang = false,
+        Gnome = false,
+        ["Grappling Hook"] = false,
+        ["Invisibility Mushroom"] = false,
+        ["Jump Mushroom"] = false,
+        ["Legendary Pet Teleporter"] = false,
+        ["Legendary Sprinkler"] = false,
+        Megaphone = false,
+        ["Mythic Pet Teleporter"] = false,
+        ["Player Magnet"] = false,
+        ["Rare Sprinkler"] = false,
+        ["Shrink Mushroom"] = false,
+        Sign = false,
+        ["Speed Mushroom"] = false,
+        ["Strawberry Sniper"] = false,
+        ["Super Pet Teleporter"] = false,
+        ["Super Sprinkler"] = false,
+        ["Super Watering Can"] = false,
+        ["Supersize Mushroom"] = false,
+        Teleporter = false,
+        Trowel = false,
+        ["Uncommon Sprinkler"] = false,
+        Wheelbarrow = false,
+    },
+
+    MailSeedWhitelist = {
+        All = false,
+        Acorn = false,
+        Apple = false,
+        ["Baby Cactus"] = false,
+        Bamboo = false,
+        Banana = false,
+        Blueberry = false,
+        Cactus = false,
+        Carrot = false,
+        Cherry = false,
+        Coconut = false,
+        Corn = false,
+        ["Dragon Fruit"] = false,
+        ["Dragon's Breath"] = false,
+        ["Ghost Pepper"] = false,
+        ["Glow Mushroom"] = false,
+        Gold = false,
+        Grape = false,
+        ["Green Bean"] = false,
+        ["Horned Melon"] = false,
+        Hypnobloom = false,
+        Mango = false,
+        ["Moon Bloom"] = false,
+        Mushroom = false,
+        Pineapple = false,
+        ["Poison Apple"] = false,
+        ["Poison Ivy"] = false,
+        Pomegranate = false,
+        Rainbow = false,
+        Romanesco = false,
+        Strawberry = false,
+        Sunflower = false,
+        Tomato = false,
+        Tulip = false,
+        ["Venom Spitter"] = false,
+        ["Venus Fly Trap"] = false,
+    },
+
+    MailPetWhitelist = {
+        All = false,
+        Bear = false,
+        Bee = false,
+        BlackDragon = false,
+        Bunny = false,
+        Deer = false,
+        Dragonfly = false,
+        Frog = false,
+        GoldenDragonfly = false,
+        IceSerpent = false,
+        Monkey = false,
+        Owl = false,
+        Raccoon = false,
+        Robin = false,
+        Turtle = false,
+        Unicorn = false,
+    },
+
+    FPSBoost = {
+        CleanupIntervalSec = 300,
+        RemoveOtherPlayerPlants = true,
+        RemoveOtherPlayerProps = true,
+        RemoveOtherPlayerPetVisuals = true,
+        RemoveTemporaryVFX = true,
+        DisableEffects = true,
+        DisablePostProcessing = true,
+        DisableShadows = true,
+    },
+
+    SeedPack = {
+        CollectNormal = true,
+        CollectGoldSeed = true,
+        CollectRainbowSeed = true,
+        PlantGoldSeed = false,
+        PlantRainbowSeed = false,
+        ClaimTimeout = 6,
+        ReturnToGarden = true,
+    },
+
+    Flow = {
+        ReserveInventorySlots = 4,
+        SellWhenInventoryFull = true,
+        PetPausesPlantCollectSellGear = true,
+        SeedPackPausesEverything = true,
+        AntiWheelbarrowReturnDistance = 35,
+    },
+
+    Delays = {
+        BuySeed = 0.05,
+        BuySeedSweep = 0.15,
+        Plant = 0.06,
+        PlantSweep = 0.12,
+        Collect = 0.008,
+        CollectSweep = 0.08,
+        Sell = 0.25,
+        BuyGear = 0.05,
+        BuyGearSweep = 0.2,
+        PetRetry = 2,
+        PetSweep = 0.18,
+        AntiAfkPulse = 60,
+        AntiWheelbarrowSweep = 0.08,
+    },
+
+    Limits = {
+        BuySeedsPerSweep = 120,
+        PlantPerSweep = 180,
+        PlantAttemptsPerSweep = 280,
+        MaxPlants = 600,
+        CollectPerSweep = 500,
+        BuyGearsPerSweep = 120,
+        GearInsufficientFundsRetries = 5,
+        BuyPetsPerSweep = 8,
+    },
+
+    Planting = {
+        Spacing = 1.08,
+    },
+
+    PetMovement = {
+        LoopTeleport = true,
+        LoopTeleportDelay = 0.03,
+        BuyTimeout = 8,
+        BuyDistance = 4,
+        TweenSpeed = 35,
+        MoveTimeout = 35,
+        ReturnToGarden = true,
+        Noclip = true,
+    },
+}
+
+getgenv().GAG2_Kaitun_Config = getgenv().GAG2KaitunConfig
+
+loadstring(game:HttpGet("https://gist.githubusercontent.com/angeryy-tvy/e284f6d9b679f604c1eab3c30ad0d51f/raw/GAG2-Kaitun-Vxeze"))()
+return getgenv().GAG2KaitunConfig` 
+    },
+    { 
+        name: "Vxeze Hub Kaitun BF", 
+        description: "",
+         
+        code: `repeat wait() until game:IsLoaded()
+getgenv().Hide_UI = false  -- Hide the top right status UI
+getgenv().Team = "Marines" -- "Marines" or "Pirates"
+getgenv().Studio = {
+    ["Blox Fruit"] = {
+        ["Sub"] = {
+            ["Pull Lever"] = true,                                                                         -- Pull lever for Race V2
+            ["Sniper Fruit"] = {
+                ["Enabled"] = false,                                                                       -- Auto buy fruits from stock
+                ["Fruit"] = { "Tiger-Tiger", "Kitsune-Kitsune", "Dragon-Dragon", "Yeti-Yeti", "Gas-Gas" }, -- Fruits to buy when on sale
+            },
+            ["Setting Player"] = {
+                ["Lock Fps"] = {
+                    ["Enabled"] = true,   -- Lock FPS to reduce lag
+                    ["FPS"] = 20,         -- FPS cap value
+                },
+                ["Hop When Idle"] = true, -- Auto hop if idle for 5 mins
+                ["Hop"] = {
+                    ["Enable"] = true,    -- Auto server hop
+                    ["Delay"] = 5,        -- Hop interval in minutes
+                }
+            }
+        },
+        ["Items"] = {
+            ["Material"] = {
+                ["Dark Fragments"] = true, -- Farm Dark Fragments before leaving Sea 2
+                ["Mirror Fractal"] = true, -- Farm Mirror Fractal via Dough King
+            },
+            ["Melee"] = {
+                ["Fighting Style"] = true, -- Unlock & max all fighting styles
+            },
+            ["Sword"] = {
+                ["Saber"] = true,             -- Get Saber V1
+                ["Cursed Dual Katana"] = true -- Get CDK (requires Yama + Tushita 350 mastery)
+            },
+            ["Gun"] = {
+                ["Skull Guitar"] = true, -- Get Soul Guitar
+            },
+        },
+        ["Webhook"] = {
+            ["Url"] = "",         -- Discord webhook URL
+            ["Delay"] = 60,       -- Send stats every X minutes
+            ["Ping Notify"] = "", -- '<@here>' or '<@UserID>' for ping
+        },
+    }
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/VxezeHubLoader/refs/heads/main/KaitunBF.lua"))()` 
+    },
+    { 
+        name: "Teddy Hub Kaitun BF", 
+        description: "",
+         
+        code: `getgenv()["Config"] = {
+    ["Fps Boost"] = true,
+    ["FPS Cap"] = 120,
+    ["Items"] = {
+        ["Auto Fully Fighting Style"] = true,
+        ["Skull Guitar"] = true,
+        ["Cursed Dual Katana"] = true,
+        ["Saber"] = true
+    },
+    ["Quests"] = {
+        ["Mirage Puzzle"] = true,
+        ["Upgrading Race"] = true,
+    },
+    ["Hopping"] = {
+        ["Auto Hop"] = true,
+        ["Hop Idle"] = true,
+        ["High Ping Hop"] = false,
+        ["Player Nearing Hop"] = false,
+    },
+    ["Sniper Fruit Shop"] = {
+        ["Enabled"] = true,
+        ["Fruit"] = {
+            "Leopard-Leopard",
+            "Kitsune-Kitsune",
+            "Dragon-Dragon",
+            "Yeti-Yeti",
+            "Gas-Gas"
+        },
+    },
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/diepvyzubu/refs/heads/main/TeddyHub-kaitunBF.lua"))()` 
+    },
+    { 
+        name: "Surge Hub Kaitun GAG 2", 
+        description: "",
+         
+        code: `
+getgenv().KaitunConfig = {
+    MovementMode = "cheat",
+
+    FpsCap = 30,
+    HideGarden3D = true,
+    HideGarden3DMode = "reparent", -- reparent / transparency
+    AntiAfk = true,
+
+    MaxBuysPerCycle = 50,
+    MaxBuysPerTick = 25,
+    MaxBuysPerSeedType = 3,
+    BuySeedLimitMultiplier = 2,
+    PlantAttemptsPerTick = 32,
+    PlantAttemptsPerCycle = 48,
+    MaxInventoryTools = 83,
+    StackSpacing = 1.2,
+    StackMaxPlants = 64,
+    FillGardenMode = true,
+    BuyLoopInterval = 1,
+    PlantLoopInterval = 0.05,
+    HarvestLoopInterval = 0.1,
+    SellLoopInterval = 0.3,
+    BuyBackoffSec = 5, -- delay when out of money
+    QuickProfitMode = false,
+    QuickProfitMaxPrice = 1000,
+    KeepBudgetSheckles = 0,
+    SeedHoardTarget = 200,
+    AutoWater = true,
+    Sprinkler = "Uncommon Sprinkler",
+    BuyGears = { "Uncommon Sprinkler", "Common Sprinkler", "Common Watering Can" },
+    AutoExpand = true,
+    ExpandInterval = 12,
+    DeleteNonFarmPlants = false,
+
+    AutoCollectGold = true,
+    AutoCollectRainbow = true,
+    WorldSeedSnatchTimeout = 2,
+    AutoOpenEggs = true,
+    EggPriority = { "Common Egg", "Epic Egg" },
+    AutoEquipPet = true,
+    AutoUpgradePetSlot = true,
+
+    Tutorial = {
+        Enable = true,
+        SendFirstPet = true,
+        AutoFlow = true,
+        SeedName = "Carrot",
+        HarvestTimeout = 60,
+    },
+
+    RedeemCodes = {
+        Enable = true,
+        Codes = { "TEAMGREENBEAN" },
+    },
+
+    BuySeed = {
+        "Carrot", "Strawberry", "Blueberry", "Tulip", "Tomato", "Apple", "Bamboo",
+        "Corn", "Cactus", "Pineapple", "Mushroom", "Green Bean", "Banana", "Grape",
+        "Coconut", "Dragon Fruit", "Mango", "Acorn", "Cherry", "Sunflower",
+        "Venus Fly Trap", "Pomegranate", "Poison Apple", "Venom Spitter",
+        "Moon Bloom", "Hypno Bloom", "Dragon's Breath",
+    },
+    PlantSeed = {
+        "Carrot", "Strawberry", "Blueberry", "Tulip", "Tomato", "Apple", "Bamboo",
+        "Corn", "Cactus", "Pineapple", "Mushroom", "Green Bean", "Banana", "Grape",
+        "Coconut", "Dragon Fruit", "Mango", "Acorn", "Cherry", "Sunflower",
+        "Venus Fly Trap", "Pomegranate", "Poison Apple", "Venom Spitter",
+        "Moon Bloom", "Hypno Bloom", "Dragon's Breath",
+    },
+
+    LimitPlantSeed = {
+        ["Carrot"] = 10, ["Strawberry"] = 10, ["Blueberry"] = 4, ["Tulip"] = 4,
+        ["Tomato"] = 4, ["Apple"] = 4, ["Corn"] = 4, ["Cactus"] = 4, ["Pineapple"] = 4,
+        ["Bamboo"] = 150, ["Mushroom"] = 200, ["Green Bean"] = 200,
+        ["Banana"] = 50, ["Grape"] = 50, ["Coconut"] = 50, ["Dragon Fruit"] = 50,
+        ["Mango"] = 50, ["Acorn"] = 50, ["Cherry"] = 50, ["Sunflower"] = 50,
+        ["Venus Fly Trap"] = 50, ["Pomegranate"] = 50, ["Poison Apple"] = 50,
+        ["Venom Spitter"] = 50, ["Moon Bloom"] = 50, ["Hypno Bloom"] = 50, ["Dragon's Breath"] = 50,
+    },
+
+    GiftMail = {
+        Enable = false,
+        RecipientUserId = "",
+        RecipientName = "",
+        Message = "auto-shipped from Surge Hub",
+        IntervalSec = 30,
+        Pet = {},   -- vd { "Deer", "Owl" }
+        Seed = {},  -- vd { "Gold", "Rainbow", "Bamboo" }
+    },
+
+    PetFinder = {
+        Enable = true,
+        HopCooldown = 45,
+        MoneyWhenHop = 50000000,
+        Pet = { "Deer" },
+    },
+
+    HopServer = false,
+
+    StayInBase = true, -- auto stay in ur garden
+
+    WebhookUrl = "",
+    WebhookInterval = 120,
+    WebhookStatusInterval = 30,
+    WebhookOnSeedCollect = true,
+    WebhookPetRarity = { "Mythic", "Super", "Secret" },
+    WebhookSeedName = {
+        "Dragon's Breath", "Venus Fly Trap", "Pomegranate", "Poison Apple",
+        "Venom Spitter", "Ghost Pepper", "Romanesco", "Moon Bloom", "Hypno Bloom",
+    },
+
+    ShowUI = true,
+
+    MainLoopDelay = 0.25,
+    RemoteCooldown = 0.10,
+    SellInterval = 1,
+}
+
+loadstring(game:HttpGet("https://hune205.dev/api/v5/files/6a3fe86e8a03eff0bee84337.lua"))()
+` 
+    },
+    { 
+        name: "Gravity Hub Auto Farm Bounty", 
+        description: "",
+         
+        code: `repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Team = "Pirates" --// Marines
+getgenv().Mode = "Auto Bounty"
+getgenv().On_Ui = true
+getgenv().Config = {
+    ["Safe Health"] = {30, 70}, -- {health run, health kill}
+    ["Custom Y Run"] = {
+        Enabled = true,
+        ["Y Run"] = 1000
+    },
+    ["Hunt Method"] = {
+        ["Use Move Predict"] = false,
+        ["Hit and Run"] = false,
+        ["Out Dimensional Rift"] = true,
+        ["Aimbot"] = true,
+        ["Hitbox"] = false,
+        ["Hitbox-Size"] = Vector3.new(80, 80, 80),
+        ["ESP Player"] = true,
+        ["Skip Player"] = {"nhinemtheothangkhac2"},
+        ["Skip Player High Bounty"] = nil,
+        ["Max Attack Time"] = 25,
+        ["Lock Bounty"] = {
+            ["Enabled"] = false,
+            ["Bounty"] = {0, 30000000}
+        }
+    },
+    ["Stats"] = {
+        ["Enable"] = false,
+        ["Reset Stats"] = false,
+        ["Point"] = {
+            ["Points per lift"] = nil,
+            ["Melee"] = nil,
+            ["Defence"] = nil,
+            ["Sword"] = nil,
+            ["Gun"] = nil,
+            ["Devil Fruit"] = nil
+        }
+    },
+    ["Shop"] = {
+        ["Random Fruit"] = false,
+        ["Store Fruit"] = true,
+        ["Zoro Sword"] = false
+    },
+    ["Setting"] = {
+        ["World"] = 3,
+        ["White Screen"] = false,
+        ["Fast Delay"] = 0.45,
+        ["FPS BOOSTER"] = false,
+        ["Bypass Method"] = nil, --// Request 
+        ["Url"] = "", -- có thể chỉnh thành {url, true} nếu muốn gửi webhook
+        ["Lock Weapons"] = {
+          ["Melee"] = nil, --// Hên xui vì game đã patched buy melee từ xa
+          ["Sword"] = nil,
+          ["Gun"] = nil
+        },
+        ["Server Hop"] = {
+          ["Minimum player"] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1} --// Số player tối thiểu để hop sang sv đó
+        }
+    },
+    ["Skip"] = {
+        ["Avoid V4"] = false,
+        ["Fruit"] = {
+            ["Enabled"] = true,
+            ["Avoid Fruit"] = {
+                "Portal-Portal",
+                "Kitsune-Kitsune"
+            }
+        }
+    },
+    ["Spam All Skill On V4"] = {
+        Enabled = true,
+        ["Weapons"] = {"Melee", "Sword", "Gun", "Blox Fruit"}
+    },
+    ["Combo"] = {
+        Enabled = true,
+        ["Order"] = {
+            {"Gun", {"X","Z"}},
+            {"Sword", {"Z","X"}},
+            {"Melee", {"X","Z","C"}},
+            {"Blox Fruit", {"Z","X","C","V","F"}}
+        }
+    },
+    ["Items"] = {
+        ["Melee"] = {
+            Enable = true,
+            Delay = 0.02,
+            Skills = {
+                Z = {Enable = true, HoldTime = 0.3},
+                X = {Enable = true, HoldTime = 0.2},
+                C = {Enable = true, HoldTime = 0.5}
+            }
+        },
+        ["Sword"] = {
+            Enable = true,
+            Delay = 0.02,
+            Skills = {
+                Z = {Enable = true, HoldTime = 1},
+                X = {Enable = true, HoldTime = 0}
+            }
+        },
+        ["Gun"] = {
+            Enable = true,
+            Delay = 0.02,
+            Skills = {
+                Z = {Enable = true, HoldTime = 0.1},
+                X = {Enable = true, HoldTime = 0.1}
+            }
+        },
+        ["Blox Fruit"] = {
+            Enable = true,
+            Delay = 0.3,
+            Skills = {
+                Z = {Enable = true, HoldTime = 0.1},
+                X = {Enable = true, HoldTime = 0.1},
+                C = {Enable = true, HoldTime = 0.15},
+                V = {Enable = true, HoldTime = 0.2},
+                F = {Enable = false, HoldTime = 0.1}
+            }
+        }
+    }
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/YeuEmNhieuLam/refs/heads/main/bounty.luau"))()` 
+    },
+    { 
+        name: "Cheem Hub Kaitun BF", 
+        description: "",
+         
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-Meoz/Cheem-Hub/refs/heads/main/BF-Kaitun.lua"))()` 
+    }
+];
+    
+
+    const scriptListContainer = document.getElementById('scriptList');
+
+    // Hàm render danh sách Script với giao diện mới (Code Box + Ảnh Bìa)
+    function renderScripts(scripts) {
+        scriptListContainer.innerHTML = ''; 
+        if (scripts.length === 0) {
+            scriptListContainer.innerHTML = '<div style="text-align:center; color:#aaa; padding:20px; grid-column: 1 / -1;">Không tìm thấy Script nào</div>';
+            return;
+        }
+
+        scripts.forEach((script, index) => {
+            const card = document.createElement('div');
+            card.className = 'script-card';
+            // Escaping code để bỏ vào hàm onClick an toàn
+            const escapedCode = script.code.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
+            card.innerHTML = `
+                                
+                <div class="script-info">
+                    <h3>${script.name}</h3>
+                    <p>${script.description || 'Script Roblox'}</p>
+                    
+                    <div class="code-box">
+                        <code>${script.code}</code>
+                        <button class="copy-btn" id="btn-copy-${index}" onclick="copyScript('${escapedCode}', 'btn-copy-${index}')">
+                            <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true" width="14" height="14">
+                                <path fill="currentColor" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+                                <path fill="currentColor" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+                            </svg>
+                            Copy Script
+                        </button>
+                    </div>
+                </div>
+            `;
+            scriptListContainer.appendChild(card);
+        });
+    }
+
+    // Logic thanh tìm kiếm
+    function filterScripts() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = scriptDatabase.filter(s => s.name.toLowerCase().includes(query));
+        renderScripts(filtered);
+    }
+
+    // Nút copy đổi trạng thái
+    function copyScript(code, buttonId) {
+        const tempTextArea = document.createElement("textarea");
+        tempTextArea.value = code.replace(/&quot;/g, '"'); 
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextArea);
+
+        const btn = document.getElementById(buttonId);
+        const originalHTML = btn.innerHTML;
+        const originalBg = btn.style.background;
+        
+        btn.innerHTML = `
+            <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true" width="14" height="14">
+                <path fill="currentColor" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+            </svg>
+            Đã Copy!
+        `;
+        btn.style.background = '#43b581'; // Xanh lá khi copy thành công
+        
+        setTimeout(() => { 
+            btn.innerHTML = originalHTML; 
+            btn.style.background = originalBg; // Trả lại màu cũ
+        }, 2000);
+    }
+
+// NHẠC NỀN
+    const playlist = [
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/YTDown_YouTube_SON-THUY-TRUNG-MAY-x-THUY-CHUNG-x-YEN-VO_Media_MjE3Yxrv5NY_007_48k.mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/snaptik.vn_7510806566115757319.mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/snaptik.vn_7563671846839700744.mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/YTDown_YouTube_Hen-Ho-Nhung-Khong-Yeu-Wendy-Thao-x-CaoT_Media_R8q8DtMoR9c_001_1080p.mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/Tuý Âm - Xesi x Masew x Nhật Nguyễn __ slowed + reverb - (64 Kbps).mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/YTDown_YouTube_Chang-The-Cam-Hoa-Ban-Hot-TikTok-Luong-Q_Media_QiyNixKJSdc_009_128k.mp3",
+        "https://raw.githubusercontent.com/Naknohack/Naknohackclentvng/main/YTDown_YouTube_Chang-The-Cam-Hoa-Ban-Hot-TikTok-Luong-Q_Media_QiyNixKJSdc_009_128k.mp3"
+    ];
+    const audio = document.getElementById('bg-audio');
+    const btnMusic = document.getElementById('music-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const icon = document.getElementById('music-icon');
+    const text = document.getElementById('music-text');
+
+    // Biến lưu vị trí bài hát hiện tại trong danh sách
+    let currentTrackIndex = 0;
+
+    function playNextSong() {
+        if (playlist.length === 0) return;
+        
+        // Chuyển sang bài tiếp theo, nếu là bài cuối cùng thì quay về bài đầu (0)
+        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+        
+        audio.src = playlist[currentTrackIndex];
+        audio.play().then(() => setPlayingState()).catch(err => console.log("Auto-play bị chặn"));
+    }
+
+    function setPlayingState() { icon.innerText = '⏸️'; text.innerText = 'Pause'; btnMusic.style.background = '#ff0080'; }
+    function setPausedState() { icon.innerText = '🎵'; text.innerText = 'Play Music'; btnMusic.style.background = '#5865f2'; }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        // Tải Script
+        renderScripts(scriptDatabase); 
+
+        // Tải nhạc bài đầu tiên
+    if (playlist.length === 0) return;
+    // Random ngẫu nhiên một vị trí dựa trên tổng số bài hát trong playlist
+    currentTrackIndex = Math.floor(Math.random() * playlist.length); 
+    audio.src = playlist[currentTrackIndex];
+
+        
+        audio.play().then(() => setPlayingState()).catch(() => {
+            // Nếu trình duyệt chặn auto-play, chờ user click vào màn hình để phát
+            document.addEventListener('click', () => { 
+                if (audio.paused) { 
+                    audio.play(); 
+                    setPlayingState(); 
+                } 
+            }, { once: true });
+        });
+    });
+
+    // Sự kiện khi hết bài -> Tự động qua bài tiếp theo tuần tự
+    audio.addEventListener('ended', playNextSong);
+
+    // Sự kiện bấm nút Next -> Qua bài tiếp theo tuần tự
+    nextBtn.addEventListener('click', (e) => { 
+        e.stopPropagation(); 
+        playNextSong(); 
+    });
+
+    // Sự kiện bấm nút Play/Pause
+    btnMusic.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (audio.paused) { 
+            audio.play(); 
+            setPlayingState(); 
+        } else { 
+            audio.pause(); 
+            setPausedState(); 
+        }
+    });
+</script>
+
+<script>
+    function formatNumber(value) {
+        return Number(value || 0).toLocaleString('vi-VN');
+    }
+
+    function animateNumber(el, targetValue, duration = 900) {
+        if (!el) return;
+        const startValue = Number((el.dataset.value || el.textContent || '0').replace(/[.,\s]/g, '')) || 0;
+        const target = Number(targetValue) || 0;
+        const startTime = performance.now();
+
+        el.classList.remove('count-animate');
+        void el.offsetWidth;
+        el.classList.add('count-animate');
+
+        function tick(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(startValue + (target - startValue) * ease);
+            el.textContent = formatNumber(current);
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                el.textContent = formatNumber(target);
+                el.dataset.value = String(target);
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+
+    function setTrend(trendEl, currentValue, previousValue) {
+        if (!trendEl) return;
+        const diff = Number(currentValue) - Number(previousValue ?? currentValue);
+        trendEl.classList.remove('up', 'down');
+
+        const card = trendEl.closest('.stat-item');
+        if (card) {
+            card.classList.remove('flash-up', 'flash-down');
+            void card.offsetWidth;
+        }
+
+        if (previousValue === null || previousValue === undefined) {
+            trendEl.textContent = 'Lần cập nhật đầu';
+            return;
+        }
+
+        if (diff > 0) {
+            trendEl.classList.add('up');
+            trendEl.textContent = `▲ +${formatNumber(diff)} so với trước`;
+            if (card) card.classList.add('flash-up');
+        } else if (diff < 0) {
+            trendEl.classList.add('down');
+            trendEl.textContent = `▼ ${formatNumber(diff)} so với trước`;
+            if (card) card.classList.add('flash-down');
+        } else {
+            trendEl.textContent = 'Không thay đổi';
+        }
+    }
+
+    let lastMembers = null;
+    let lastOnline = null;
+
+    async function fetchDiscordStats() {
+        try {
+            const res = await fetch('https://discord.com/api/v9/invites/uSWQ7rhpDp?with_counts=true');
+            const data = await res.json();
+
+            if (typeof data.approximate_member_count === 'number') {
+                const members = data.approximate_member_count;
+                animateNumber(document.getElementById('discord-members'), members);
+                setTrend(document.getElementById('members-trend'), members, lastMembers);
+                lastMembers = members;
+            }
+            if (typeof data.approximate_presence_count === 'number') {
+                const online = data.approximate_presence_count;
+                animateNumber(document.getElementById('discord-online'), online);
+                setTrend(document.getElementById('online-trend'), online, lastOnline);
+                lastOnline = online;
+            }
+        } catch (err) {
+            console.error('Lỗi lấy data Discord:', err);
+        }
+    }
+
+    async function fetchWebsiteViews() {
+        try {
+            const res = await fetch('https://api.counterapi.dev/v1/naknohack-community/homepage/up');
+            const data = await res.json();
+            if (typeof data.count === 'number') {
+                animateNumber(document.getElementById('website-views'), data.count);
+            }
+        } catch (err) {
+            console.error('Lỗi lấy data Views:', err);
+        }
+    }
+
+    const VISITOR_KEY = 'naknohack_live_visitors_v1';
+    const TAB_ID = sessionStorage.getItem('naknohack_tab_id') || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+    sessionStorage.setItem('naknohack_tab_id', TAB_ID);
+
+    function readVisitorMap() {
+        try {
+            return JSON.parse(localStorage.getItem(VISITOR_KEY) || '{}') || {};
+        } catch {
+            return {};
+        }
+    }
+
+    function writeVisitorMap(map) {
+        localStorage.setItem(VISITOR_KEY, JSON.stringify(map));
+    }
+
+    function updateVisitorDisplay() {
+        const now = Date.now();
+        const map = readVisitorMap();
+        const active = Object.values(map).filter(ts => now - Number(ts) <= 12000).length || 1;
+
+        const visitorsEl = document.getElementById('website-visitors');
+
+        if (visitorsEl) {
+            animateNumber(visitorsEl, active, 500);
+        }
+
+        const updateEl = document.getElementById('visitors-last-update');
+        if (updateEl) {
+            const d = new Date();
+            updateEl.textContent = d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+        }
+    }
+
+    function pingVisitor() {
+        const now = Date.now();
+        const map = readVisitorMap();
+        map[TAB_ID] = now;
+        for (const [key, ts] of Object.entries(map)) {
+            if (now - Number(ts) > 12000) delete map[key];
+        }
+        writeVisitorMap(map);
+        updateVisitorDisplay();
+    }
+
+    window.addEventListener('beforeunload', () => {
+        const map = readVisitorMap();
+        delete map[TAB_ID];
+        writeVisitorMap(map);
+    });
+
+    window.addEventListener('storage', (e) => {
+        if (e.key === VISITOR_KEY) updateVisitorDisplay();
+    });
+
+    if ('BroadcastChannel' in window) {
+        const channel = new BroadcastChannel('naknohack-visitors');
+        channel.onmessage = (ev) => {
+            if (ev.data === 'ping') updateVisitorDisplay();
+        };
+        setInterval(() => channel.postMessage('ping'), 5000);
+    }
+
+    function initScrollReveal() {
+        const elementsToReveal = document.querySelectorAll('.bot-card, .download-card, .script-card');
+        elementsToReveal.forEach(el => el.classList.add('reveal'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        elementsToReveal.forEach(el => observer.observe(el));
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        renderScripts(scriptDatabase);
+        fetchDiscordStats();
+        fetchWebsiteViews();
+        pingVisitor();
+        updateVisitorDisplay();
+
+        setInterval(fetchDiscordStats, 60000);
+        setInterval(fetchWebsiteViews, 120000);
+        setInterval(pingVisitor, 5000);
+        setInterval(updateVisitorDisplay, 7000);
+
+        setTimeout(initScrollReveal, 500);
+    });
+</script>
+    
+<script>
+// ==========================================
+// NAKNOHACK OBFUSCATOR CORE (ENTANGLED VM + ANTI-CRACK)
+// ==========================================
+
+const ObfConfig = {
+    removeComments: true,
+    minifyCode: true,
+    addJunkOpcodes: true,
+    junkFrequency: 0.65, 
+    watermark: ""
+};
+
+class LuaLexer {
+    static tokenize(code) {
+        const tokens = [];
+        let i = 0;
+        while (i < code.length) {
+            let char = code[i];
+            if (char === '"' || char === "'") {
+                let quote = char, str = quote;
+                i++;
+                while (i < code.length) {
+                    str += code[i];
+                    if (code[i] === '\\') {
+                        i++;
+                        str += code[i]; 
+                    } else if (code[i] === quote) break;
+                    i++;
+                }
+                tokens.push({ type: 'String', value: str });
+                i++; continue;
+            }
+            if (char === '-' && code[i + 1] === '-') {
+                let comment = "--";
+                i += 2;
+                if (code[i] === '[' && code[i + 1] === '[') {
+                    comment += "[["; i += 2;
+                    while (i < code.length && !(code[i] === ']' && code[i + 1] === ']')) {
+                        comment += code[i]; i++;
+                    }
+                    comment += "]]"; i += 2;
+                } else {
+                    while (i < code.length && code[i] !== '\n') {
+                        comment += code[i]; i++;
+                    }
+                }
+                tokens.push({ type: 'Comment', value: comment });
+                continue;
+            }
+            if (/\s/.test(char)) {
+                let space = char; i++;
+                while (i < code.length && /\s/.test(code[i])) {
+                    space += code[i]; i++;
+                }
+                tokens.push({ type: 'Whitespace', value: space });
+                continue;
+            }
+            tokens.push({ type: 'Other', value: char }); i++;
+        }
+        return tokens;
+    }
+}
+
+class CodeTransformer {
+    static process(sourceCode, config) {
+        const tokens = LuaLexer.tokenize(sourceCode);
+        let transformedCode = [];
+        for (let token of tokens) {
+            if (config.removeComments && token.type === 'Comment') continue;
+            if (config.minifyCode && token.type === 'Whitespace') {
+                transformedCode.push(" "); continue;
+            }
+            transformedCode.push(token.value);
+        }
+        return transformedCode.join("").trim();
+    }
+}
+
+// 4. MODULE VM COMPILER - NÂNG CẤP ENTANGLED KEY & OPAQUE PREDICATES
+class VMCompiler {
+    static randVar(len) {
+        const chars = 'IlO0';
+        let res = '_';
+        for(let i = 0; i < len; i++) res += chars.charAt(Math.floor(Math.random() * chars.length));
+        return res;
+    }
+
+    static byteEscape(str) {
+        let res = "";
+        for(let i = 0; i < str.length; i++) res += "\\" + str.charCodeAt(i);
+        return '"' + res + '"';
+    }
+
+    static compile(sourceCode, config) {
+        const outBuilder = [];
+        let utf8str = unescape(encodeURIComponent(sourceCode));
+        
+        // Khởi tạo khóa ngẫu nhiên cho mỗi lần build
+        const baseKey = Math.floor(Math.random() * 100) + 50;
+        const keyMod = Math.floor(Math.random() * 50) + 10;
+        const finalKey = baseKey + keyMod; 
+        
+        let bytecode = [];
+        let pcIndex = 1;
+        
+        // Biên dịch sang Bytecode ảo
+        for(let i = 0; i < utf8str.length; i++) {
+            let encrypted = (utf8str.charCodeAt(i) ^ finalKey);
+            
+            // Tăng độ biến thiên bằng lệnh rác ngẫu nhiên
+            if (config.addJunkOpcodes && Math.random() > (1 - config.junkFrequency)) {
+                let junkCount = Math.floor(Math.random() * 4) + 1;
+                bytecode.push(`{2,${pcIndex + junkCount + 1}}`);
+                pcIndex++;
+                for(let j = 0; j < junkCount; j++) {
+                    bytecode.push(`{${Math.floor(Math.random() * 5) + 4},${Math.floor(Math.random() * 255)}}`);
+                    pcIndex++;
+                }
+            }
+            bytecode.push(`{1,${encrypted}}`);
+            pcIndex++;
+        }
+        bytecode.push(`{3,0}`);
+
+        // Hệ thống biến đa hình (Polymorphic Variables)
+        const envV = this.randVar(10), strV = this.randVar(8), charV = this.randVar(9);
+        const tblV = this.randVar(8), concatV = this.randVar(10);
+        const rawLoadV = this.randVar(11), iscV = this.randVar(8), infoV = this.randVar(9);
+        
+        const tamperV = this.randVar(7), keyV = this.randVar(8);
+        const memV = this.randVar(12), pcV = this.randVar(7), regV = this.randVar(8);
+        const instV = this.randVar(9), opV = this.randVar(8);
+        const aV = this.randVar(5), bV = this.randVar(5), cV = this.randVar(5), pV = this.randVar(5);
+        const raV = this.randVar(6), rbV = this.randVar(6);
+
+        // Sinh rác logic (Opaque Predicates) để chống phân tích tĩnh
+        const opaque1 = Math.floor(Math.random() * 100) + 500; // Luôn > 100
+        const opaque2 = Math.floor(Math.random() * 50); // Luôn < 100
+
+        if (config.watermark) outBuilder.push(config.watermark);
+
+        // 1. MÔI TRƯỜNG & BIẾN CƠ SỞ
+        outBuilder.push(`local ${envV}=(getfenv or function()return _ENV end)()`);
+        outBuilder.push(`local ${strV}=${envV}[${this.byteEscape("string")}]`);
+        outBuilder.push(`local ${charV}=${strV}[${this.byteEscape("char")}]`);
+        outBuilder.push(`local ${tblV}=${envV}[${this.byteEscape("table")}]`);
+        outBuilder.push(`local ${concatV}=${tblV}[${this.byteEscape("concat")}]`);
+        
+        outBuilder.push(`local ${rawLoadV}=${envV}[${this.byteEscape("loadstring")}] or ${envV}[${this.byteEscape("load")}]`);
+        outBuilder.push(`local ${iscV}=${envV}[${this.byteEscape("iscclosure")}]`);
+        outBuilder.push(`local ${infoV}=${envV}[${this.byteEscape("debug")}] and ${envV}[${this.byteEscape("debug")}][${this.byteEscape("getinfo")}]`);
+
+        // 2. DATA ENTANGLEMENT (SILENT ANTI-HOOK)
+        // Thay vì crash, chúng ta cộng dồn điểm tamper.
+        outBuilder.push(`local ${tamperV}=0`);
+        outBuilder.push(`if ${iscV} and not ${iscV}(${rawLoadV}) then ${tamperV}=${tamperV}+13 end`);
+        outBuilder.push(`if ${infoV} then local _i=${infoV}(${rawLoadV}) if _i and (_i.what==${this.byteEscape("Lua")} or (_i.source and _i.source:sub(1,1)==${this.byteEscape("@")})) then ${tamperV}=${tamperV}+17 end end`);
+        outBuilder.push(`if tostring(${rawLoadV}):find(${this.byteEscape("hook")}) or tostring(${rawLoadV}):find(${this.byteEscape("wrap")}) then ${tamperV}=${tamperV}+23 end`);
+
+        // Khóa giải mã bị phụ thuộc vào tính toàn vẹn của hàm loadstring
+        outBuilder.push(`local ${keyV}=(${baseKey}+${keyMod})+(${tamperV}*${Math.floor(Math.random() * 5) + 2})`);
+        
+        // 3. MÁY ẢO VM & OPAQUE PREDICATES
+        outBuilder.push(`local ${memV}={${bytecode.join(",")}}`);
+        outBuilder.push(`local ${pcV}=1`);
+        outBuilder.push(`local ${regV}={}`);
+        
+        outBuilder.push(`while true do`);
+        // Khối lệnh rác ngầm (Luôn sai, nhưng Deobfuscator không biết)
+        outBuilder.push(`if ${opaque1} < ${opaque2} then ${pcV}=${pcV}-1 end`); 
+        
+        outBuilder.push(`local ${instV}=${memV}[${pcV}]`);
+        outBuilder.push(`if not ${instV} then break end`);
+        outBuilder.push(`local ${opV}=${instV}[1]`);
+        
+        // Dispatcher
+        outBuilder.push(`if ${opV}==1 then`);
+        // Bitwise XOR giả lập (an toàn trên mọi executor)
+        outBuilder.push(`local ${aV},${bV},${cV},${pV}=${instV}[2],${keyV},0,1`);
+        outBuilder.push(`while ${aV}>0 or ${bV}>0 do`);
+        outBuilder.push(`local ${raV},${rbV}=${aV}%2,${bV}%2`);
+        outBuilder.push(`if ${raV}~=${rbV} then ${cV}=${cV}+${pV} end`);
+        outBuilder.push(`${aV},${bV},${pV}=(${aV}-${raV})/2,(${bV}-${rbV})/2,${pV}*2`);
+        outBuilder.push(`end`);
+        outBuilder.push(`${regV}[#${regV}+1]=${charV}(${cV})`);
+        outBuilder.push(`${pcV}=${pcV}+1`);
+        
+        outBuilder.push(`elseif ${opV}==2 then`);
+        outBuilder.push(`${pcV}=${instV}[2]`);
+        
+        outBuilder.push(`elseif ${opV}==3 then`);
+        outBuilder.push(`break`);
+        
+        outBuilder.push(`else`);
+        // Xử lý các Opcode rác
+        outBuilder.push(`${pcV}=${pcV}+1`);
+        outBuilder.push(`end`);
+        outBuilder.push(`end`);
+
+        // 4. ANTI-DUMP EXECUTION LAYER
+        // Nếu tamperV > 0, regV chứa toàn rác, loadstring(rác) sẽ trả về function nil + lỗi 문 pháp
+        outBuilder.push(`local _f, _e = pcall(function() return ${rawLoadV}(${concatV}(${regV})) end)`);
+        
+        // Memory Erasure (Xóa toàn bộ dấu vết RAM ngay khi load xong)
+        outBuilder.push(`${regV}=nil; ${memV}=nil; ${instV}=nil;`);
+        
+        // Thực thi trong lồng ẩn để tránh bị traceback
+        outBuilder.push(`if _f and type(_e)==${this.byteEscape("function")} then`);
+        outBuilder.push(`    local _s, _r = pcall(_e)`);
+        outBuilder.push(`    if not _s then return end`); // Lỗi im lặng (Silent Fail)
+        outBuilder.push(`end`);
+
+        return outBuilder.join("\n");
+    }
+}
+
+// 5. GIAO TIẾP IO
+const AppIO = {
+    loadCodeFromFile(input) {
+        if (!input.files || input.files.length === 0) return;
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.onload = e => document.getElementById('obf-input-code').value = e.target.result;
+        reader.readAsText(file);
+    },
+
+    triggerObfuscation() {
+        const rawContent = document.getElementById('obf-input-code').value;
+        const wm = document.getElementById('obf-watermark').value;
+        if (!rawContent.trim()) { alert("Vui lòng dán code!"); return; }
+        ObfConfig.watermark = wm;
+        const cleanCode = CodeTransformer.process(rawContent, ObfConfig);
+        document.getElementById('obf-output-code').value = VMCompiler.compile(cleanCode, ObfConfig);
+    },
+
+    downloadResult() {
+        const finalCode = document.getElementById('obf-output-code').value;
+        if (!finalCode.trim()) { alert("Chưa có code!"); return; }
+        let fileName = "Naknohack_Obfuscated.lua";
+        const fileInput = document.getElementById('obf-file');
+        if (fileInput.files && fileInput.files.length > 0) fileName = "Naknohack_Obf_" + fileInput.files[0].name.replace(/\.[^/.]+$/, "") + ".lua";
+        const blob = new Blob([finalCode], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = fileName;
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(url);
+    }
+};
+
+window.loadCodeFromFile = AppIO.loadCodeFromFile;
+window.runObfuscator = AppIO.triggerObfuscation;
+window.downloadObfuscated = AppIO.downloadResult;
+// ==================== ĐIỀU KHIỂN MENU TẢI ROBLOX ====================
+function toggleRobloxDownloads(type) {
+    // Ẩn menu chính
+    document.getElementById('main-roblox-downloads').style.display = 'none';
+    
+    // Ẩn tất cả menu phụ 
+    document.getElementById('sub-downloads-vng').style.display = 'none';
+    document.getElementById('sub-downloads-fixlag').style.display = 'none';
+
+    // Hiện menu phụ tương ứng
+    if(type === 'vng') {
+        document.getElementById('sub-downloads-vng').style.display = 'block';
+    } else if (type === 'fixlag') {
+        document.getElementById('sub-downloads-fixlag').style.display = 'block';
+    }
+}
+
+function backToMainRoblox() {
+    // Trả menu chính về dạng lưới (grid) ban đầu
+    document.getElementById('main-roblox-downloads').style.display = 'grid';
+    
+    // Giấu các menu phụ đi
+    document.getElementById('sub-downloads-vng').style.display = 'none';
+    document.getElementById('sub-downloads-fixlag').style.display = 'none';
+}
+// ==========================================
+// NAK AI LITE CORE ENGINE
+// ==========================================
+let aiKnowledge = [];
+
+// Hàm chuẩn hóa tiếng Việt (xóa dấu, đưa về chữ thường)
+function normalizeText(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").toLowerCase().trim();
+}
+
+// Tải dữ liệu JSON khi web vừa load
+fetch('knowledge.json')
+    .then(response => response.json())
+    .then(data => { aiKnowledge = data; })
+    .catch(err => console.error("Không thể tải knowledge.json. Đảm bảo file tồn tại.", err));
+
+const aiPanel = document.getElementById('ai-panel');
+const aiToggleBtn = document.getElementById('ai-toggle-btn');
+const aiCloseBtn = document.getElementById('ai-close-btn');
+const aiChatBox = document.getElementById('ai-chat-box');
+const aiInput = document.getElementById('ai-input');
+const aiSendBtn = document.getElementById('ai-send-btn');
+const aiTyping = document.getElementById('ai-typing');
+
+// Bật tắt UI
+aiToggleBtn.addEventListener('click', () => aiPanel.classList.toggle('active'));
+aiCloseBtn.addEventListener('click', () => aiPanel.classList.remove('active'));
+
+// Xử lý logic tìm câu trả lời (Keyword Scoring)
+function getAIResponse(userText) {
+    const cleanInput = normalizeText(userText);
+    let bestMatch = null;
+    let highestScore = 0;
+
+    aiKnowledge.forEach(intent => {
+        let score = 0;
+        intent.keywords.forEach(keyword => {
+            const cleanKeyword = normalizeText(keyword);
+            if (cleanInput.includes(cleanKeyword)) {
+                // Điểm ưu tiên cho từ khóa dài hơn (chính xác hơn)
+                score += cleanKeyword.length; 
+            }
+        });
+
+        if (score > highestScore) {
+            highestScore = score;
+            bestMatch = intent;
+        }
+    });
+
+    // Nếu có match, random 1 câu trả lời trong mảng responses. Nếu không, lấy fallback.
+    if (bestMatch && highestScore > 0) {
+        const responses = bestMatch.responses;
+        return responses[Math.floor(Math.random() * responses.length)];
+    } else {
+        const fallback = aiKnowledge.find(i => i.intent === "khong_hieu");
+        return fallback ? fallback.responses[0] : "Xin lỗi, hiện tại AI đang bảo trì nội dung này.";
+    }
+}
+
+// Hàm thêm tin nhắn vào khung chat
+function appendMessage(sender, text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `ai-msg ${sender}`;
+    msgDiv.textContent = text;
+    aiChatBox.appendChild(msgDiv);
+    aiChatBox.scrollTop = aiChatBox.scrollHeight;
+}
+
+// Xử lý gửi tin nhắn
+function handleSend() {
+    const text = aiInput.value.trim();
+    if (!text) return;
+
+    appendMessage('user', text);
+    aiInput.value = '';
+    aiTyping.style.display = 'block';
+
+    // Giả lập độ trễ suy nghĩ của AI (400ms đến 800ms) để giống thật
+    setTimeout(() => {
+        aiTyping.style.display = 'none';
+        const response = getAIResponse(text);
+        appendMessage('bot', response);
+    }, Math.floor(Math.random() * 400) + 400);
+}
+
+aiSendBtn.addEventListener('click', handleSend);
+aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSend();
+});
+
+</script>
+
+</body>
+</html>
